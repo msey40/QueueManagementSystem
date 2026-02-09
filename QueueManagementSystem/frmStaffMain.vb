@@ -1,0 +1,268 @@
+﻿Imports MySql.Data.MySqlClient
+
+Public Class frmStaffMain
+
+    Private isFormLoaded As Boolean = False
+    Private CurrentCounterID As Integer = -1
+
+    Private Sub frmStaffMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If ModuleDatabase.cn.State <> ConnectionState.Open Then
+            ModuleDatabase.setConnectionDatabase()
+        End If
+
+        lblUser.Text = "Logged in: " & CurrentUsername
+
+        ' Fill counter dropdown
+        ModuleDatabase.FillComboBox(cmbCounter, "counters", "counter_id", "name", "", "name ASC")
+
+        ' Fill services for self-assignment
+        Dim dtServices As New DataTable
+        ModuleDatabase.FillDynamicTable("SELECT service_id, name FROM services ORDER BY name", dtServices)
+        checkedListServices.DataSource = dtServices
+        checkedListServices.DisplayMember = "name"
+        checkedListServices.ValueMember = "service_id"
+
+        If cmbCounter.Items.Count > 0 Then
+            cmbCounter.SelectedIndex = 0
+        End If
+
+        isFormLoaded = True
+        TimerRefresh.Start()
+        LoadWaitingQueue()
+    End Sub
+
+    Private Sub cmbCounter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCounter.SelectedIndexChanged
+        If Not isFormLoaded Then Exit Sub
+        If cmbCounter.SelectedIndex = -1 Then Exit Sub
+
+        CurrentCounterID = -1
+        lblStatus.Text = ""
+
+        Try
+            Dim selectedVal = cmbCounter.SelectedValue
+            If selectedVal IsNot Nothing AndAlso IsNumeric(selectedVal) Then
+                CurrentCounterID = Convert.ToInt32(selectedVal)
+            ElseIf TypeOf selectedVal Is DataRowView Then
+                Dim drv As DataRowView = DirectCast(selectedVal, DataRowView)
+                CurrentCounterID = Convert.ToInt32(drv("counter_id"))
+            End If
+
+            If CurrentCounterID > 0 Then
+                lblStatus.Text = "Selected counter: " & cmbCounter.Text
+                LoadWaitingQueue()
+            Else
+                lblStatus.Text = "Invalid counter selection"
+            End If
+        Catch ex As Exception
+            lblStatus.Text = "Error selecting counter"
+            MessageBox.Show("Error reading counter ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub LoadWaitingQueue()
+        If CurrentCounterID <= 0 Then Exit Sub
+
+        If ModuleDatabase.cn.State <> ConnectionState.Open Then
+            Try
+                ModuleDatabase.cn.Open()
+            Catch ex As Exception
+                ModuleDatabase.AlertMessage("Connection error in queue load: " & ex.Message)
+                Exit Sub
+            End Try
+        End If
+
+        Dim sql As String = "
+            SELECT 
+                q.queue_id, 
+                q.queue_number AS 'Queue Number', 
+                s.name AS Service, 
+                q.joined_at AS 'Joined at',
+                q.Status,
+                CASE WHEN q.status = 'called' THEN 'Called' ELSE 'Waiting' END AS 'Display Status'
+            FROM queue q
+            INNER JOIN services s ON q.service_id = s.service_id
+            INNER JOIN counter_active_services cas ON cas.service_id = q.service_id
+            WHERE q.status IN ('waiting', 'called')
+              AND cas.counter_id = @counterId
+              AND cas.is_active = 1
+            ORDER BY 
+                CASE WHEN q.status = 'called' THEN 0 ELSE 1 END,   -- Called first
+                q.joined_at ASC"
+
+        Dim dt As New DataTable
+        Dim cmd As New MySqlCommand(sql, ModuleDatabase.cn)
+        cmd.Parameters.AddWithValue("@counterId", CurrentCounterID)
+
+        Try
+            Dim adapter As New MySqlDataAdapter(cmd)
+            adapter.Fill(dt)
+            dgvQueue.DataSource = dt
+
+            ' Hide technical columns
+            If dgvQueue.Columns.Contains("queue_id") Then dgvQueue.Columns("queue_id").Visible = False
+            If dgvQueue.Columns.Contains("joined_at") Then dgvQueue.Columns("joined_at").DefaultCellStyle.Format = "HH:mm:ss"
+
+            If dt.Rows.Count = 0 Then
+                lblStatus.Text = "No waiting or called customers"
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading queue: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnCallNext_Click(sender As Object, e As EventArgs) Handles btnCallNext.Click
+        If CurrentCounterID <= 0 Then
+            ModuleDatabase.AlertMessage("Please select a counter first")
+            Exit Sub
+        End If
+
+        If ModuleDatabase.cn.State <> ConnectionState.Open Then
+            Try
+                ModuleDatabase.cn.Open()
+            Catch ex As Exception
+                ModuleDatabase.AlertMessage("Cannot open database connection: " & ex.Message)
+                Exit Sub
+            End Try
+        End If
+
+        Dim sql As String = "
+            SELECT q.queue_id, q.queue_number, s.name AS service
+            FROM queue q
+            INNER JOIN services s ON q.service_id = s.service_id
+            INNER JOIN counter_active_services cas ON cas.service_id = q.service_id
+            WHERE q.status = 'waiting'
+              AND cas.counter_id = @counter
+              AND cas.is_active = 1
+            ORDER BY q.joined_at ASC
+            LIMIT 1"
+
+        Dim dt As New DataTable
+
+        Try
+            Using cmd As New MySqlCommand(sql, ModuleDatabase.cn)
+                cmd.Parameters.AddWithValue("@counter", CurrentCounterID)
+                Using adapter As New MySqlDataAdapter(cmd)
+                    adapter.Fill(dt)
+                End Using
+            End Using
+
+            If dt.Rows.Count = 0 Then
+                ModuleDatabase.AlertMessage("No waiting customers for your selected services")
+                Exit Sub
+            End If
+
+            Dim row = dt.Rows(0)
+            Dim queueId = Convert.ToInt32(row("queue_id"))
+            Dim ticket = row("queue_number").ToString()
+            Dim service = row("service").ToString()
+
+            ' Update to called
+            Dim updateSql = "UPDATE queue SET status = 'called', called_counter_id = @cid, called_at = NOW() WHERE queue_id = @qid"
+            Using cmdUpdate As New MySqlCommand(updateSql, ModuleDatabase.cn)
+                cmdUpdate.Parameters.AddWithValue("@cid", CurrentCounterID)
+                cmdUpdate.Parameters.AddWithValue("@qid", queueId)
+                cmdUpdate.ExecuteNonQuery()
+            End Using
+
+            ' Log call
+            Dim logSql = "INSERT INTO call_logs (queue_id, counter_id, user_id, action) VALUES (@qid, @cid, @uid, 'call')"
+            Using cmdLog As New MySqlCommand(logSql, ModuleDatabase.cn)
+                cmdLog.Parameters.AddWithValue("@qid", queueId)
+                cmdLog.Parameters.AddWithValue("@cid", CurrentCounterID)
+                cmdLog.Parameters.AddWithValue("@uid", CurrentUserID)
+                cmdLog.ExecuteNonQuery()
+            End Using
+
+            ModuleDatabase.AlertMessage("Calling: " & ticket & " - " & service & vbCrLf & "Go to Counter " & cmbCounter.Text)
+
+            LoadWaitingQueue()
+
+        Catch ex As Exception
+            ModuleDatabase.AlertMessage("Error calling next customer: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnServed_Click(sender As Object, e As EventArgs) Handles btnServed.Click
+        setConnectionDatabase()
+        If dgvQueue.SelectedRows.Count = 0 Then
+            ModuleDatabase.AlertMessage("Please select a customer from the queue")
+            Exit Sub
+        End If
+
+        Try
+            Dim queueId = Convert.ToInt32(dgvQueue.SelectedRows(0).Cells("queue_id").Value)
+            Dim status = dgvQueue.SelectedRows(0).Cells("status").Value.ToString()
+
+            If status = "called" Then
+                Dim sql = "UPDATE queue SET status = 'served', served_at = NOW() WHERE queue_id = @qid"
+                Using cmd As New MySqlCommand(sql, ModuleDatabase.cn)
+                    cmd.Parameters.AddWithValue("@qid", queueId)
+                    cmd.ExecuteNonQuery()
+                End Using
+
+                ModuleDatabase.AlertMessage("Customer marked as served")
+                LoadWaitingQueue()
+            Else
+                ModuleDatabase.AlertMessage("This customer is not currently called")
+            End If
+
+        Catch ex As Exception
+            ModuleDatabase.AlertMessage("Error marking as served: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        LoadWaitingQueue()
+    End Sub
+
+    Private Sub TimerRefresh_Tick(sender As Object, e As EventArgs) Handles TimerRefresh.Tick
+        If CurrentCounterID > 0 Then
+            LoadWaitingQueue()
+        End If
+    End Sub
+
+    Private Sub btnConfirmServices_Click(sender As Object, e As EventArgs) Handles btnConfirmServices.Click
+        If CurrentCounterID <= 0 Then
+            MessageBox.Show("Please select your counter first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+
+        Try
+            ' Clear old assignments for this counter
+            ModuleDatabase.DeleteRow("counter_active_services", "counter_id = " & CurrentCounterID)
+
+            ' Save new selected services
+            For Each item In checkedListServices.CheckedItems
+                Dim drv As DataRowView = DirectCast(item, DataRowView)
+                Dim serviceId = Convert.ToInt32(drv("service_id"))
+
+                Dim values As New Dictionary(Of String, Object) From {
+                    {"counter_id", CurrentCounterID},
+                    {"service_id", serviceId},
+                    {"assigned_by", CurrentUserID}
+                }
+                ModuleDatabase.SaveWithImage("counter_active_services", values)
+            Next
+
+            MessageBox.Show("Your selected services have been confirmed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            LoadWaitingQueue()
+
+        Catch ex As Exception
+            MessageBox.Show("Error confirming services: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        frmMonitor.Show()
+        frmMonitor.Left = Screen.PrimaryScreen.Bounds.Width
+        frmMonitor.Top = 0
+        frmMonitor.WindowState = FormWindowState.Maximized
+    End Sub
+
+    Private Sub frmStaffMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Application.Exit()
+    End Sub
+End Class
