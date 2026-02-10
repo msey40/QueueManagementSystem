@@ -27,7 +27,6 @@ Partial Class frmAdmin
         Me.pnlMain = New System.Windows.Forms.Panel()
         Me.dgvAssignments = New System.Windows.Forms.DataGridView()
         Me.pnlControls = New System.Windows.Forms.Panel()
-        Me.btnAddUser = New System.Windows.Forms.Button()
         Me.lblService = New System.Windows.Forms.Label()
         Me.lblCounter = New System.Windows.Forms.Label()
         Me.cmbService = New System.Windows.Forms.ComboBox()
@@ -36,6 +35,8 @@ Partial Class frmAdmin
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.TimerRefresh = New System.Windows.Forms.Timer(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnAddUser = New System.Windows.Forms.Button()
         Me.pnlMain.SuspendLayout()
         CType(Me.dgvAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlControls.SuspendLayout()
@@ -45,10 +46,9 @@ Partial Class frmAdmin
         '
         Me.lblTitle.AutoSize = True
         Me.lblTitle.Font = New System.Drawing.Font("Segoe UI", 18.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitle.Location = New System.Drawing.Point(16, 15)
-        Me.lblTitle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTitle.Location = New System.Drawing.Point(12, 12)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(497, 41)
+        Me.lblTitle.Size = New System.Drawing.Size(405, 32)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "Admin - Manage Counter Services"
         '
@@ -59,10 +59,9 @@ Partial Class frmAdmin
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlMain.Controls.Add(Me.dgvAssignments)
         Me.pnlMain.Controls.Add(Me.pnlControls)
-        Me.pnlMain.Location = New System.Drawing.Point(16, 74)
-        Me.pnlMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pnlMain.Location = New System.Drawing.Point(12, 60)
         Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(1571, 575)
+        Me.pnlMain.Size = New System.Drawing.Size(1178, 467)
         Me.pnlMain.TabIndex = 1
         '
         'dgvAssignments
@@ -95,8 +94,7 @@ Partial Class frmAdmin
         Me.dgvAssignments.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvAssignments.EnableHeadersVisualStyles = False
         Me.dgvAssignments.GridColor = System.Drawing.SystemColors.ControlText
-        Me.dgvAssignments.Location = New System.Drawing.Point(0, 98)
-        Me.dgvAssignments.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvAssignments.Location = New System.Drawing.Point(0, 80)
         Me.dgvAssignments.Name = "dgvAssignments"
         Me.dgvAssignments.ReadOnly = True
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -116,12 +114,13 @@ Partial Class frmAdmin
         Me.dgvAssignments.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.dgvAssignments.RowTemplate.Height = 50
         Me.dgvAssignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvAssignments.Size = New System.Drawing.Size(1571, 473)
+        Me.dgvAssignments.Size = New System.Drawing.Size(1178, 384)
         Me.dgvAssignments.TabIndex = 0
         '
         'pnlControls
         '
         Me.pnlControls.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pnlControls.Controls.Add(Me.Button1)
         Me.pnlControls.Controls.Add(Me.btnAddUser)
         Me.pnlControls.Controls.Add(Me.lblService)
         Me.pnlControls.Controls.Add(Me.lblCounter)
@@ -131,39 +130,18 @@ Partial Class frmAdmin
         Me.pnlControls.Controls.Add(Me.btnRemove)
         Me.pnlControls.Controls.Add(Me.btnRefresh)
         Me.pnlControls.Location = New System.Drawing.Point(0, 0)
-        Me.pnlControls.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pnlControls.Name = "pnlControls"
-        Me.pnlControls.Size = New System.Drawing.Size(1571, 86)
+        Me.pnlControls.Size = New System.Drawing.Size(1178, 70)
         Me.pnlControls.TabIndex = 1
-        '
-        'btnAddUser
-        '
-        Me.btnAddUser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(125, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.btnAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddUser.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddUser.ForeColor = System.Drawing.Color.White
-        Me.btnAddUser.Image = Global.QueueManagementSystem.My.Resources.Resources.plus
-        Me.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAddUser.Location = New System.Drawing.Point(1441, 18)
-        Me.btnAddUser.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.btnAddUser.Name = "btnAddUser"
-        Me.btnAddUser.Padding = New System.Windows.Forms.Padding(2)
-        Me.btnAddUser.Size = New System.Drawing.Size(105, 49)
-        Me.btnAddUser.TabIndex = 7
-        Me.btnAddUser.Text = "User"
-        Me.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnAddUser.UseVisualStyleBackColor = False
         '
         'lblService
         '
         Me.lblService.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblService.AutoSize = True
-        Me.lblService.Location = New System.Drawing.Point(369, 22)
-        Me.lblService.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblService.Location = New System.Drawing.Point(277, 18)
         Me.lblService.Name = "lblService"
-        Me.lblService.Size = New System.Drawing.Size(56, 16)
+        Me.lblService.Size = New System.Drawing.Size(46, 13)
         Me.lblService.TabIndex = 1
         Me.lblService.Text = "Service:"
         '
@@ -172,10 +150,9 @@ Partial Class frmAdmin
         Me.lblCounter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblCounter.AutoSize = True
-        Me.lblCounter.Location = New System.Drawing.Point(20, 22)
-        Me.lblCounter.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCounter.Location = New System.Drawing.Point(15, 18)
         Me.lblCounter.Name = "lblCounter"
-        Me.lblCounter.Size = New System.Drawing.Size(56, 16)
+        Me.lblCounter.Size = New System.Drawing.Size(47, 13)
         Me.lblCounter.TabIndex = 0
         Me.lblCounter.Text = "Counter:"
         '
@@ -184,10 +161,9 @@ Partial Class frmAdmin
         Me.cmbService.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmbService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbService.Location = New System.Drawing.Point(435, 18)
-        Me.cmbService.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbService.Location = New System.Drawing.Point(326, 15)
         Me.cmbService.Name = "cmbService"
-        Me.cmbService.Size = New System.Drawing.Size(239, 24)
+        Me.cmbService.Size = New System.Drawing.Size(180, 21)
         Me.cmbService.TabIndex = 3
         '
         'cmbCounter
@@ -195,10 +171,9 @@ Partial Class frmAdmin
         Me.cmbCounter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmbCounter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCounter.Location = New System.Drawing.Point(99, 18)
-        Me.cmbCounter.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbCounter.Location = New System.Drawing.Point(74, 15)
         Me.cmbCounter.Name = "cmbCounter"
-        Me.cmbCounter.Size = New System.Drawing.Size(239, 24)
+        Me.cmbCounter.Size = New System.Drawing.Size(180, 21)
         Me.cmbCounter.TabIndex = 2
         '
         'btnAdd
@@ -208,10 +183,9 @@ Partial Class frmAdmin
         Me.btnAdd.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
         Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAdd.ForeColor = System.Drawing.Color.White
-        Me.btnAdd.Location = New System.Drawing.Point(689, 17)
-        Me.btnAdd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAdd.Location = New System.Drawing.Point(517, 14)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(160, 49)
+        Me.btnAdd.Size = New System.Drawing.Size(120, 40)
         Me.btnAdd.TabIndex = 4
         Me.btnAdd.Text = "Add Assignment"
         Me.btnAdd.UseVisualStyleBackColor = False
@@ -223,10 +197,9 @@ Partial Class frmAdmin
         Me.btnRemove.BackColor = System.Drawing.Color.IndianRed
         Me.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRemove.ForeColor = System.Drawing.Color.White
-        Me.btnRemove.Location = New System.Drawing.Point(857, 18)
-        Me.btnRemove.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRemove.Location = New System.Drawing.Point(643, 15)
         Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(160, 49)
+        Me.btnRemove.Size = New System.Drawing.Size(120, 40)
         Me.btnRemove.TabIndex = 5
         Me.btnRemove.Text = "Remove Selected"
         Me.btnRemove.UseVisualStyleBackColor = False
@@ -235,10 +208,9 @@ Partial Class frmAdmin
         '
         Me.btnRefresh.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnRefresh.Location = New System.Drawing.Point(1035, 18)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRefresh.Location = New System.Drawing.Point(776, 15)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(160, 49)
+        Me.btnRefresh.Size = New System.Drawing.Size(120, 40)
         Me.btnRefresh.TabIndex = 6
         Me.btnRefresh.Text = "Refresh"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -247,15 +219,48 @@ Partial Class frmAdmin
         '
         Me.TimerRefresh.Interval = 10000
         '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.BackColor = System.Drawing.Color.White
+        Me.Button1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Button1.Image = Global.QueueManagementSystem.My.Resources.Resources.plus
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(949, 14)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Padding = New System.Windows.Forms.Padding(2)
+        Me.Button1.Size = New System.Drawing.Size(100, 40)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "Service"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'btnAddUser
+        '
+        Me.btnAddUser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddUser.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.btnAddUser.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAddUser.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnAddUser.Image = Global.QueueManagementSystem.My.Resources.Resources.plus
+        Me.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAddUser.Location = New System.Drawing.Point(1072, 14)
+        Me.btnAddUser.Name = "btnAddUser"
+        Me.btnAddUser.Padding = New System.Windows.Forms.Padding(2)
+        Me.btnAddUser.Size = New System.Drawing.Size(90, 40)
+        Me.btnAddUser.TabIndex = 7
+        Me.btnAddUser.Text = "User"
+        Me.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnAddUser.UseVisualStyleBackColor = False
+        '
         'frmAdmin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1597, 640)
+        Me.ClientSize = New System.Drawing.Size(1198, 520)
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.lblTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmAdmin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Admin - Manage Counter & Services"
@@ -281,4 +286,5 @@ Partial Class frmAdmin
     Friend WithEvents lblService As Label
     Friend WithEvents TimerRefresh As Timer
     Friend WithEvents btnAddUser As Button
+    Friend WithEvents Button1 As Button
 End Class

@@ -23,7 +23,7 @@ Module ModuleDatabase
     Public Sub setConnectionDatabase()
         Try
             ' Updated connection string for MySQL 8
-            connection = $"server=localhost;user id=root;password="";database=queue_db;SslMode=none;"
+            connection = $"SERVER={"localhost"};DATABASE={"qeue_sys"};UID={"root"};PWD={""};PORT={"3306"};Charset=utf8mb4;SslMode=none;"
             cn = New MySqlConnection
             With cn
                 Try

@@ -98,4 +98,9 @@ Public Class frmAdmin
     Private Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
         frmAddUser.ShowDialog()
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        frmService.ShowDialog()
+
+    End Sub
 End Class

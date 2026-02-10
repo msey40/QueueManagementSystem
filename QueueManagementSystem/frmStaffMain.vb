@@ -127,15 +127,15 @@ Public Class frmStaffMain
         End If
 
         Dim sql As String = "
-            SELECT q.queue_id, q.queue_number, s.name AS service
-            FROM queue q
-            INNER JOIN services s ON q.service_id = s.service_id
-            INNER JOIN counter_active_services cas ON cas.service_id = q.service_id
-            WHERE q.status = 'waiting'
-              AND cas.counter_id = @counter
-              AND cas.is_active = 1
-            ORDER BY q.joined_at ASC
-            LIMIT 1"
+        SELECT q.queue_id, q.queue_number, s.name AS service
+        FROM queue q
+        INNER JOIN services s ON q.service_id = s.service_id
+        INNER JOIN counter_active_services cas ON cas.service_id = q.service_id
+        WHERE q.status = 'waiting'
+          AND cas.counter_id = @counter
+          AND cas.is_active = 1
+        ORDER BY q.joined_at ASC
+        LIMIT 1"
 
         Dim dt As New DataTable
 
@@ -157,7 +157,32 @@ Public Class frmStaffMain
             Dim ticket = row("queue_number").ToString()
             Dim service = row("service").ToString()
 
-            ' Update to called
+            ' ────────────────────────────────────────────────
+            '           PLAY RING SOUND (use ring.wav)
+            ' ────────────────────────────────────────────────
+            Try
+                ' Use .wav file – My.Computer.Audio.Play does NOT support mp3 reliably
+                Dim soundPath As String = IO.Path.Combine(Application.StartupPath, "ring.wav")
+
+                Debug.WriteLine("Sound path: " & soundPath)
+                Debug.WriteLine("File exists? " & IO.File.Exists(soundPath).ToString)
+
+                If IO.File.Exists(soundPath) Then
+                    My.Computer.Audio.Play(soundPath, AudioPlayMode.Background)
+                    Debug.WriteLine("Sound playback started")
+                Else
+                    Debug.WriteLine("Sound file NOT found: " & soundPath)
+                    ' Optional: uncomment during testing
+                    ' ModuleDatabase.AlertMessage("Ring sound file not found!")
+                End If
+            Catch ex As Exception
+                Debug.WriteLine("Sound playback error: " & ex.Message)
+                ' Optional: uncomment to see error during testing
+                ' MessageBox.Show("Cannot play ring sound: " & ex.Message)
+            End Try
+            ' ────────────────────────────────────────────────
+
+            ' Update queue status to called
             Dim updateSql = "UPDATE queue SET status = 'called', called_counter_id = @cid, called_at = NOW() WHERE queue_id = @qid"
             Using cmdUpdate As New MySqlCommand(updateSql, ModuleDatabase.cn)
                 cmdUpdate.Parameters.AddWithValue("@cid", CurrentCounterID)
@@ -165,7 +190,7 @@ Public Class frmStaffMain
                 cmdUpdate.ExecuteNonQuery()
             End Using
 
-            ' Log call
+            ' Log the call
             Dim logSql = "INSERT INTO call_logs (queue_id, counter_id, user_id, action) VALUES (@qid, @cid, @uid, 'call')"
             Using cmdLog As New MySqlCommand(logSql, ModuleDatabase.cn)
                 cmdLog.Parameters.AddWithValue("@qid", queueId)
@@ -178,11 +203,11 @@ Public Class frmStaffMain
 
             LoadWaitingQueue()
 
+
         Catch ex As Exception
             ModuleDatabase.AlertMessage("Error calling next customer: " & ex.Message)
         End Try
     End Sub
-
     Private Sub btnServed_Click(sender As Object, e As EventArgs) Handles btnServed.Click
         setConnectionDatabase()
         If dgvQueue.SelectedRows.Count = 0 Then

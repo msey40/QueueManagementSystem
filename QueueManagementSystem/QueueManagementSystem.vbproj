@@ -102,6 +102,12 @@
     <Compile Include="frmMonitor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmService.Designer.vb">
+      <DependentUpon>frmService.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmService.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmStaffMain.Designer.vb">
       <DependentUpon>frmStaffMain.vb</DependentUpon>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMonitor.resx">
       <DependentUpon>frmMonitor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmService.resx">
+      <DependentUpon>frmService.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStaffMain.resx">
       <DependentUpon>frmStaffMain.vb</DependentUpon>
