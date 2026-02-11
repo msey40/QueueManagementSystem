@@ -19,25 +19,15 @@ Public Class frmAddUser
         SELECT user_id, username, password_hash, role, status
         FROM users
         ORDER BY username ASC"
+        Dim dt As New DataTable()
+        FillDynamicTable(sqlquery, dt)
 
-        Using cmd As New MySqlCommand(sqlquery, ModuleDatabase.cn)
-            If ModuleDatabase.cn.State <> ConnectionState.Open Then ModuleDatabase.cn.Open()
+        If dt.Rows.Count > 0 Then
 
-            Using reader As MySqlDataReader = cmd.ExecuteReader()
-                Dim i As Integer = 1
-                While reader.Read()
-                    dgvUser.Rows.Add(
-                        reader("user_id"),
-                    i,                                  ' No.
-                    reader("username").ToString(),     ' Username
-                    reader("password_hash").ToString(),     ' Password
-                    reader("role").ToString(),         ' Role
-                    Convert.ToBoolean(reader("status")) ' Status (checkbox)
-                )
-                    i += 1
-                End While
-            End Using
-        End Using
+            For i = 0 To dt.Rows.Count - 1
+                dgvUser.Rows.Add(dt(i)(0), i + 1, dt(i)("username"), dt(i)("password_hash"), dt(i)("role"), dt(i)("status"))
+            Next
+        End If
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -80,7 +70,7 @@ Public Class frmAddUser
         values("role") = cboRole.Text
         values("status") = ckSt.Checked
 
-        Dim conditions As String = "user_id=" & user_id & ""
+        Dim conditions As String = "user_id = " & user_id & ""
 
 
         ModuleDatabase.UpdateWithImage(

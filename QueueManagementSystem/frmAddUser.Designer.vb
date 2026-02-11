@@ -130,11 +130,11 @@ Partial Class frmAddUser
         Me.dgvUser.BackgroundColor = System.Drawing.SystemColors.Control
         Me.dgvUser.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Gray
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvUser.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvUser.ColumnHeadersHeight = 30
@@ -167,6 +167,7 @@ Partial Class frmAddUser
         Me.dgvUser.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvUser.RowTemplate.Height = 30
         Me.dgvUser.RowTemplate.ReadOnly = True
+        Me.dgvUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvUser.Size = New System.Drawing.Size(498, 450)
         Me.dgvUser.TabIndex = 7
         '
