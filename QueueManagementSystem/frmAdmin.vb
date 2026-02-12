@@ -7,7 +7,7 @@ Public Class frmAdmin
         ' Fill counters
         ModuleDatabase.FillComboBox(cmbCounter, "counters", "counter_id", "name", "", "name ASC")
         ' Fill services
-        ModuleDatabase.FillComboBox(cmbService, "services", "service_id", "name", "", "name ASC")
+        ModuleDatabase.FillComboBox(cmbService, "services", "service_id", "name", "", "created_at Desc")
         ' Load current assignments
         LoadAssignments()
         TimerRefresh.Start()
@@ -18,8 +18,10 @@ Public Class frmAdmin
         SELECT 
             c.name AS 'Counter Name',
             s.name AS 'Service Name',
-            cs.counter_id AS 'Counter ID',
-            cs.service_id AS 'Service ID'
+            c.current_coun_id AS 'Counter ID',
+            s.description AS 'Description',
+            cs.counter_id,
+            cs.service_id
         FROM counter_services cs
         JOIN counters c ON cs.counter_id = c.counter_id
         JOIN services s ON cs.service_id = s.service_id
@@ -28,6 +30,13 @@ Public Class frmAdmin
         Dim dt As New DataTable
         ModuleDatabase.FillDynamicTable(sql, dt)
         dgvAssignments.DataSource = dt
+        If dgvAssignments.Columns.Contains("counter_id") Then
+            dgvAssignments.Columns("counter_id").Visible = False
+        End If
+
+        If dgvAssignments.Columns.Contains("service_id") Then
+            dgvAssignments.Columns("service_id").Visible = False
+        End If
 
         ' No need to hide 'id' anymore
         ' Remove or comment out these lines:
@@ -101,5 +110,12 @@ Public Class frmAdmin
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnSService.Click
         frmService.ShowDialog()
+        ModuleDatabase.FillComboBox(cmbService, "services", "service_id", "name", "", "created_at Desc")
     End Sub
+
+    Private Sub btnCount_Click(sender As Object, e As EventArgs) Handles btnCount.Click
+        frmCounter.ShowDialog()
+        ModuleDatabase.FillComboBox(cmbCounter, "counters", "counter_id", "name", "", "name ASC")
+    End Sub
+
 End Class

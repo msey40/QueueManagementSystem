@@ -70,10 +70,6 @@ Public Class frmService
         loadServiceToForm(row)
         btnSave.Text = "Update"
     End Sub
-
-
-
-
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         cleartxt()
     End Sub
@@ -106,5 +102,4 @@ Public Class frmService
             loadService()
         End If
     End Sub
-
 End Class

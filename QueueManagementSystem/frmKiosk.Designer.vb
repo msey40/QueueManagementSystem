@@ -149,7 +149,7 @@ Partial Class frmKiosk
         '
         'TimerReset
         '
-        Me.TimerReset.Interval = 5000
+        Me.TimerReset.Interval = 3000
         '
         'frmKiosk
         '

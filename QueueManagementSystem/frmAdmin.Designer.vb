@@ -23,10 +23,13 @@ Partial Class frmAdmin
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAdmin))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlMain = New System.Windows.Forms.Panel()
         Me.dgvAssignments = New System.Windows.Forms.DataGridView()
         Me.pnlControls = New System.Windows.Forms.Panel()
+        Me.btnCount = New System.Windows.Forms.Button()
         Me.btnSService = New System.Windows.Forms.Button()
         Me.btnAddUser = New System.Windows.Forms.Button()
         Me.lblService = New System.Windows.Forms.Label()
@@ -68,6 +71,8 @@ Partial Class frmAdmin
         '
         Me.dgvAssignments.AllowUserToAddRows = False
         Me.dgvAssignments.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.PaleTurquoise
+        Me.dgvAssignments.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvAssignments.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -75,44 +80,44 @@ Partial Class frmAdmin
         Me.dgvAssignments.BackgroundColor = System.Drawing.Color.White
         Me.dgvAssignments.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvAssignments.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvAssignments.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvAssignments.ColumnHeadersHeight = 45
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvAssignments.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvAssignments.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvAssignments.ColumnHeadersHeight = 45
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvAssignments.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvAssignments.EnableHeadersVisualStyles = False
         Me.dgvAssignments.GridColor = System.Drawing.SystemColors.ControlText
         Me.dgvAssignments.Location = New System.Drawing.Point(0, 80)
         Me.dgvAssignments.Name = "dgvAssignments"
         Me.dgvAssignments.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvAssignments.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvAssignments.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvAssignments.RowHeadersVisible = False
         Me.dgvAssignments.RowHeadersWidth = 51
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        Me.dgvAssignments.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        Me.dgvAssignments.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgvAssignments.RowTemplate.Height = 50
         Me.dgvAssignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvAssignments.Size = New System.Drawing.Size(1178, 384)
@@ -120,6 +125,7 @@ Partial Class frmAdmin
         '
         'pnlControls
         '
+        Me.pnlControls.Controls.Add(Me.btnCount)
         Me.pnlControls.Controls.Add(Me.btnSService)
         Me.pnlControls.Controls.Add(Me.btnAddUser)
         Me.pnlControls.Controls.Add(Me.lblService)
@@ -135,18 +141,33 @@ Partial Class frmAdmin
         Me.pnlControls.Size = New System.Drawing.Size(1178, 70)
         Me.pnlControls.TabIndex = 1
         '
+        'btnCount
+        '
+        Me.btnCount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCount.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.btnCount.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCount.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnCount.Image = CType(resources.GetObject("btnCount.Image"), System.Drawing.Image)
+        Me.btnCount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnCount.Location = New System.Drawing.Point(966, 11)
+        Me.btnCount.Name = "btnCount"
+        Me.btnCount.Size = New System.Drawing.Size(90, 40)
+        Me.btnCount.TabIndex = 9
+        Me.btnCount.Text = "Counter"
+        Me.btnCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnCount.UseVisualStyleBackColor = False
+        '
         'btnSService
         '
         Me.btnSService.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSService.BackColor = System.Drawing.Color.White
+        Me.btnSService.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnSService.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSService.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.btnSService.Image = Global.QueueManagementSystem.My.Resources.Resources.plus
+        Me.btnSService.Image = CType(resources.GetObject("btnSService.Image"), System.Drawing.Image)
         Me.btnSService.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSService.Location = New System.Drawing.Point(949, 14)
+        Me.btnSService.Location = New System.Drawing.Point(869, 11)
         Me.btnSService.Name = "btnSService"
-        Me.btnSService.Padding = New System.Windows.Forms.Padding(2)
-        Me.btnSService.Size = New System.Drawing.Size(100, 40)
+        Me.btnSService.Size = New System.Drawing.Size(90, 40)
         Me.btnSService.TabIndex = 8
         Me.btnSService.Text = "Service"
         Me.btnSService.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -155,15 +176,15 @@ Partial Class frmAdmin
         'btnAddUser
         '
         Me.btnAddUser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAddUser.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.btnAddUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.btnAddUser.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddUser.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btnAddUser.Image = Global.QueueManagementSystem.My.Resources.Resources.plus
         Me.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAddUser.Location = New System.Drawing.Point(1072, 14)
+        Me.btnAddUser.Location = New System.Drawing.Point(1061, 11)
         Me.btnAddUser.Name = "btnAddUser"
         Me.btnAddUser.Padding = New System.Windows.Forms.Padding(2)
-        Me.btnAddUser.Size = New System.Drawing.Size(90, 40)
+        Me.btnAddUser.Size = New System.Drawing.Size(80, 40)
         Me.btnAddUser.TabIndex = 7
         Me.btnAddUser.Text = "User"
         Me.btnAddUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -174,7 +195,7 @@ Partial Class frmAdmin
         Me.lblService.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblService.AutoSize = True
-        Me.lblService.Location = New System.Drawing.Point(277, 18)
+        Me.lblService.Location = New System.Drawing.Point(268, 18)
         Me.lblService.Name = "lblService"
         Me.lblService.Size = New System.Drawing.Size(46, 13)
         Me.lblService.TabIndex = 1
@@ -185,7 +206,7 @@ Partial Class frmAdmin
         Me.lblCounter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblCounter.AutoSize = True
-        Me.lblCounter.Location = New System.Drawing.Point(15, 18)
+        Me.lblCounter.Location = New System.Drawing.Point(6, 18)
         Me.lblCounter.Name = "lblCounter"
         Me.lblCounter.Size = New System.Drawing.Size(47, 13)
         Me.lblCounter.TabIndex = 0
@@ -196,7 +217,7 @@ Partial Class frmAdmin
         Me.cmbService.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmbService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbService.Location = New System.Drawing.Point(326, 15)
+        Me.cmbService.Location = New System.Drawing.Point(317, 15)
         Me.cmbService.Name = "cmbService"
         Me.cmbService.Size = New System.Drawing.Size(180, 21)
         Me.cmbService.TabIndex = 3
@@ -206,7 +227,7 @@ Partial Class frmAdmin
         Me.cmbCounter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmbCounter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCounter.Location = New System.Drawing.Point(74, 15)
+        Me.cmbCounter.Location = New System.Drawing.Point(65, 15)
         Me.cmbCounter.Name = "cmbCounter"
         Me.cmbCounter.Size = New System.Drawing.Size(180, 21)
         Me.cmbCounter.TabIndex = 2
@@ -216,11 +237,10 @@ Partial Class frmAdmin
         Me.btnAdd.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAdd.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
-        Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAdd.ForeColor = System.Drawing.Color.White
-        Me.btnAdd.Location = New System.Drawing.Point(517, 14)
+        Me.btnAdd.Location = New System.Drawing.Point(508, 9)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(120, 40)
+        Me.btnAdd.Size = New System.Drawing.Size(100, 40)
         Me.btnAdd.TabIndex = 4
         Me.btnAdd.Text = "Add Assignment"
         Me.btnAdd.UseVisualStyleBackColor = False
@@ -230,11 +250,10 @@ Partial Class frmAdmin
         Me.btnRemove.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnRemove.BackColor = System.Drawing.Color.IndianRed
-        Me.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRemove.ForeColor = System.Drawing.Color.White
-        Me.btnRemove.Location = New System.Drawing.Point(643, 15)
+        Me.btnRemove.Location = New System.Drawing.Point(614, 9)
         Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(120, 40)
+        Me.btnRemove.Size = New System.Drawing.Size(100, 40)
         Me.btnRemove.TabIndex = 5
         Me.btnRemove.Text = "Remove Selected"
         Me.btnRemove.UseVisualStyleBackColor = False
@@ -243,9 +262,9 @@ Partial Class frmAdmin
         '
         Me.btnRefresh.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnRefresh.Location = New System.Drawing.Point(776, 15)
+        Me.btnRefresh.Location = New System.Drawing.Point(720, 9)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(120, 40)
+        Me.btnRefresh.Size = New System.Drawing.Size(100, 40)
         Me.btnRefresh.TabIndex = 6
         Me.btnRefresh.Text = "Refresh"
         Me.btnRefresh.UseVisualStyleBackColor = True
@@ -289,4 +308,5 @@ Partial Class frmAdmin
     Friend WithEvents TimerRefresh As Timer
     Friend WithEvents btnAddUser As Button
     Friend WithEvents btnSService As Button
+    Friend WithEvents btnCount As Button
 End Class

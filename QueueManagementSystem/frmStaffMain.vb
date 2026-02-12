@@ -22,6 +22,7 @@ Public Class frmStaffMain
         checkedListServices.DisplayMember = "name"
         checkedListServices.ValueMember = "service_id"
 
+
         If cmbCounter.Items.Count > 0 Then
             cmbCounter.SelectedIndex = 0
         End If
@@ -30,6 +31,7 @@ Public Class frmStaffMain
         TimerRefresh.Start()
         LoadWaitingQueue()
     End Sub
+
 
     Private Sub cmbCounter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCounter.SelectedIndexChanged
         If Not isFormLoaded Then Exit Sub
@@ -47,18 +49,11 @@ Public Class frmStaffMain
                 CurrentCounterID = Convert.ToInt32(drv("counter_id"))
             End If
 
-            If CurrentCounterID > 0 Then
-                lblStatus.Text = "Selected counter: " & cmbCounter.Text
-                LoadWaitingQueue()
-            Else
-                lblStatus.Text = "Invalid counter selection"
-            End If
         Catch ex As Exception
             lblStatus.Text = "Error selecting counter"
             MessageBox.Show("Error reading counter ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
     Private Sub LoadWaitingQueue()
         If CurrentCounterID <= 0 Then Exit Sub
 
@@ -290,4 +285,5 @@ Public Class frmStaffMain
     Private Sub frmStaffMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Application.Exit()
     End Sub
+
 End Class
