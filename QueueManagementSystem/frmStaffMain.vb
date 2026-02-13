@@ -31,29 +31,66 @@ Public Class frmStaffMain
         TimerRefresh.Start()
         LoadWaitingQueue()
     End Sub
-
-
     Private Sub cmbCounter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCounter.SelectedIndexChanged
         If Not isFormLoaded Then Exit Sub
         If cmbCounter.SelectedIndex = -1 Then Exit Sub
 
-        CurrentCounterID = -1
-        lblStatus.Text = ""
+        CurrentCounterID = Convert.ToInt32(cmbCounter.SelectedValue)
 
         Try
-            Dim selectedVal = cmbCounter.SelectedValue
-            If selectedVal IsNot Nothing AndAlso IsNumeric(selectedVal) Then
-                CurrentCounterID = Convert.ToInt32(selectedVal)
-            ElseIf TypeOf selectedVal Is DataRowView Then
-                Dim drv As DataRowView = DirectCast(selectedVal, DataRowView)
-                CurrentCounterID = Convert.ToInt32(drv("counter_id"))
-            End If
+            ' --- Load only the services assigned to this counter ---
+            Dim dtAssigned As New DataTable
+            Dim sql As String =
+            "SELECT s.service_id " &
+            "FROM services s " &
+            "INNER JOIN counter_services cs ON s.service_id = cs.service_id " &
+            "WHERE cs.counter_id = @counter_id"
+
+            Using cmd As New MySqlCommand(sql, ModuleDatabase.cn)
+                cmd.Parameters.AddWithValue("@counter_id", CurrentCounterID)
+                Using adapter As New MySqlDataAdapter(cmd)
+                    adapter.Fill(dtAssigned)
+                End Using
+            End Using
+
+            ' --- Check only the assigned services ---
+            Dim assignedIds As New HashSet(Of Integer)
+            For Each row As DataRow In dtAssigned.Rows
+                assignedIds.Add(Convert.ToInt32(row("service_id")))
+            Next
+
+            ' Save admin-assigned IDs for locking
+            adminAssignedIds.Clear()
+            For Each id As Integer In assignedIds
+                adminAssignedIds.Add(id)
+            Next
+
+            ' --- Clear all previous checks first ---
+            For i As Integer = 0 To checkedListServices.Items.Count - 1
+                checkedListServices.SetItemChecked(i, False)
+            Next
+
+            ' --- Now check admin-assigned services ---
+            For i As Integer = 0 To checkedListServices.Items.Count - 1
+                Dim drv As DataRowView = DirectCast(checkedListServices.Items(i), DataRowView)
+                Dim serviceId As Integer = Convert.ToInt32(drv("service_id"))
+
+                If assignedIds.Contains(serviceId) Then
+                    checkedListServices.SetItemChecked(i, True)
+                End If
+            Next
+
+
 
         Catch ex As Exception
-            lblStatus.Text = "Error selecting counter"
-            MessageBox.Show("Error reading counter ID: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error loading counter services: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
+
+
+
     Private Sub LoadWaitingQueue()
         If CurrentCounterID <= 0 Then Exit Sub
 
@@ -203,6 +240,7 @@ Public Class frmStaffMain
             ModuleDatabase.AlertMessage("Error calling next customer: " & ex.Message)
         End Try
     End Sub
+
     Private Sub btnServed_Click(sender As Object, e As EventArgs) Handles btnServed.Click
         setConnectionDatabase()
         If dgvQueue.SelectedRows.Count = 0 Then
@@ -272,18 +310,43 @@ Public Class frmStaffMain
             MessageBox.Show("Error confirming services: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         frmMonitor.Show()
         frmMonitor.Left = Screen.PrimaryScreen.Bounds.Width
         frmMonitor.Top = 0
         frmMonitor.WindowState = FormWindowState.Maximized
     End Sub
+    ' Form-level variable to track admin-assigned services
+    Private adminAssignedIds As New HashSet(Of Integer)
+    ' Prevent unchecking admin-assigned services
+    Private Sub checkedListServices_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles checkedListServices.ItemCheck
+        Dim drv As DataRowView = DirectCast(checkedListServices.Items(e.Index), DataRowView)
+        Dim serviceId As Integer = Convert.ToInt32(drv("service_id"))
 
-    Private Sub frmStaffMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        Application.Exit()
+        ' Block unchecking admin-assigned services
+        If adminAssignedIds.Contains(serviceId) AndAlso e.NewValue = CheckState.Unchecked Then
+            e.NewValue = CheckState.Checked
+        End If
+    End Sub
+    ' Optional: gray out admin-assigned services
+    Private Sub CheckedListServices_DrawItem(sender As Object, e As DrawItemEventArgs)
+        e.DrawBackground()
+        If e.Index < 0 Then Return
+
+        Dim drv As DataRowView = DirectCast(checkedListServices.Items(e.Index), DataRowView)
+        Dim serviceId As Integer = Convert.ToInt32(drv("service_id"))
+
+        Dim foreColor As Color = If(adminAssignedIds.Contains(serviceId), Color.Gray, Color.Black)
+        TextRenderer.DrawText(e.Graphics, drv("name").ToString(), e.Font, e.Bounds, foreColor)
+        e.DrawFocusRectangle()
     End Sub
 
+    Private Sub frmStaffMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.No Then
+            e.Cancel = True
+            Return
+        End If
+        Application.ExitThread()
+    End Sub
 End Class

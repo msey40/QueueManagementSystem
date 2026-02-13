@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Drawing.Printing
+Imports MySql.Data.MySqlClient
 
 Public Class frmAdmin
 
@@ -108,7 +109,7 @@ Public Class frmAdmin
         frmAddUser.ShowDialog()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnSService.Click
+    Private Sub btnSService_Click(sender As Object, e As EventArgs) Handles btnSService.Click
         frmService.ShowDialog()
         ModuleDatabase.FillComboBox(cmbService, "services", "service_id", "name", "", "created_at Desc")
     End Sub
@@ -116,6 +117,22 @@ Public Class frmAdmin
     Private Sub btnCount_Click(sender As Object, e As EventArgs) Handles btnCount.Click
         frmCounter.ShowDialog()
         ModuleDatabase.FillComboBox(cmbCounter, "counters", "counter_id", "name", "", "name ASC")
+    End Sub
+
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.No Then
+            e.Cancel = True
+            Return
+        End If
+        Application.ExitThread()
+    End Sub
+
+    Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
+        cmsSettings.Show(Cursor.Position)
+    End Sub
+    Private Sub mnuDevice_Click(sender As Object, e As EventArgs) Handles mnuDevice.Click
+        Process.Start("rundll32.exe", "printui.dll,PrintUIEntry /il")
     End Sub
 
 End Class

@@ -476,4 +476,5 @@ Module ModuleDatabase
             MessageBox.Show("Cannot execute the stored procedure." & vbCrLf & "Report: " & ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 End Module

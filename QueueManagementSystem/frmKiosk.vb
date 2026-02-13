@@ -1,8 +1,13 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Drawing.Printing
+Imports MySql.Data.MySqlClient
 
 Public Class frmKiosk
-
+    'Private Const PRINTER_NAME As String = "\\192.168.99.197\80mm Series Printer"
+    Private PRINTER_NAME As String = My.Settings.printerName
     Private Sub frmKiosk_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        loadprintername()
+
         ' Ensure database connection is ready
         Try
             If ModuleDatabase.cn.State <> ConnectionState.Open Then
@@ -31,6 +36,23 @@ Public Class frmKiosk
         End Try
     End Sub
 
+    Private Sub loadprintername()
+        ComboBox1.Items.Clear()
+
+        For Each printer As String In PrinterSettings.InstalledPrinters
+            ComboBox1.Items.Add(printer)
+        Next
+
+        ' Load saved printer
+        If My.Settings.printerName <> "" Then
+            ComboBox1.Text = My.Settings.printerName
+        Else
+            ' Fallback to default printer
+            Dim ps As New PrinterSettings()
+            ComboBox1.Text = ps.PrinterName
+        End If
+    End Sub
+
     Private Sub btnGetTicket_Click(sender As Object, e As EventArgs) Handles btnGetTicket.Click
         If cmbService.SelectedValue Is Nothing Then
             MessageBox.Show("Please select a service first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -39,22 +61,23 @@ Public Class frmKiosk
         End If
 
         Try
-            ' Ensure connection is open
             If ModuleDatabase.cn.State <> ConnectionState.Open Then
                 ModuleDatabase.cn.Open()
-                ' MessageBox.Show("Connection opened for ticket creation", "Debug Info")  ' Uncomment for debug
             End If
 
             Dim serviceId As Integer = Convert.ToInt32(cmbService.SelectedValue)
+            Dim serviceName As String = cmbService.Text ' Get the name for the receipt
 
             ' Prepare insert values
             Dim values As New Dictionary(Of String, Object) From {
                 {"service_id", serviceId},
                 {"status", "waiting"},
-                {"joined_at", DateTime.Now}   ' Explicitly set - remove if table has DEFAULT CURRENT_TIMESTAMP
+                {"joined_at", DateTime.Now}
             }
+
             ' Insert new queue entry
             Dim newQueueId As Integer = ModuleDatabase.SaveWithImage("queue", values)
+
             If newQueueId > 0 Then
                 ' Fetch the generated queue_number
                 Dim dt As New DataTable
@@ -67,32 +90,68 @@ Public Class frmKiosk
                 End Using
 
                 If dt.Rows.Count > 0 Then
-                    Dim ticket As String = dt.Rows(0)("queue_number").ToString()
-                    lblTicketNumber.Text = ticket
-                    pnlTicket.Visible = True
-                    lblWelcome.Visible = False
-                    lblInstruction.Visible = False
-                    cmbService.Visible = False
-                    btnGetTicket.Visible = False
+                    Dim ticketNumber As String = dt.Rows(0)("queue_number").ToString()
+
+                    ' Update UI
+                    lblTicketNumber.Text = ticketNumber
+                    ShowTicketPanel(True)
+
+                    ' --- START PRINTING LOGIC ---
+                    PrintQueueTicket(ticketNumber, serviceName)
+                    ' --- END PRINTING LOGIC ---
+
                     TimerReset.Start()
                 Else
-                    MessageBox.Show("Ticket created (ID: " & newQueueId & ") but queue_number not found in DB", "Warning")
+                    MessageBox.Show("Ticket created but queue_number not found.", "Warning")
                 End If
-            Else
-                MessageBox.Show("Failed to create ticket." & vbCrLf &
-                                "Returned ID: " & newQueueId & vbCrLf &
-                                "Possible causes: connection issue, missing fields, trigger error, or table constraints.", "Error")
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Critical error during ticket creation:" & vbCrLf &
-                            ex.Message & vbCrLf & vbCrLf &
-                            "Stack Trace:" & vbCrLf & ex.StackTrace,
-                            "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            ' Optional: close connection only if you don't want to keep it open
-            ' If ModuleDatabase.cn.State = ConnectionState.Open Then ModuleDatabase.cn.Close()
+            MessageBox.Show("Error: " & ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    ' New helper method for printing
+    Private Sub PrintQueueTicket(ticketNum As String, serviceName As String)
+        Try
+            Dim printer As New ReceiptPrinter80(PRINTER_NAME)
+            MsgBox(PRINTER_NAME)
+            ' Configure Header
+            printer.AddReceiptHeader("OUR BANK / CLINIC", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "QUEUE TICKET")
+
+            printer.AddEmptyLine()
+
+            ' Print Ticket Number (Make it large by setting font if desired)
+            printer.SetFont("Arial", 24, FontStyle.Bold)
+            printer.AddLine(ticketNum, "center")
+
+            ' Print Service Name
+            printer.SetFont("Segoe UI", 12, FontStyle.Regular)
+            printer.AddLine(serviceName, "center")
+
+            printer.AddEmptyLine()
+            printer.AddSeparator("-")
+
+            ' Footer
+            printer.SetFont("Segoe UI", 8, FontStyle.Italic)
+            printer.AddLine("Please wait for your number to be called.", "center")
+            printer.AddLine("Thank you!", "center")
+
+            ' Execute print
+            printer.Print()
+
+        Catch ex As Exception
+            ' We use Console.WriteLine so the kiosk UI doesn't crash if printer is off
+            Console.WriteLine("Printing failed: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Helper to clean up UI toggle code
+    Private Sub ShowTicketPanel(show As Boolean)
+        pnlTicket.Visible = show
+        lblWelcome.Visible = Not show
+        lblInstruction.Visible = Not show
+        cmbService.Visible = Not show
+        btnGetTicket.Visible = Not show
     End Sub
 
     Private Sub TimerReset_Tick(sender As Object, e As EventArgs) Handles TimerReset.Tick
@@ -106,5 +165,10 @@ Public Class frmKiosk
         btnGetTicket.Visible = True
         cmbService.SelectedIndex = -1
         lblTicketNumber.Text = "-----"
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        My.Settings.printerName = ComboBox1.Text
+        My.Settings.Save()
     End Sub
 End Class

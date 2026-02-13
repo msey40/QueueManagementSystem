@@ -40,9 +40,14 @@ Partial Class frmAdmin
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.TimerRefresh = New System.Windows.Forms.Timer(Me.components)
+        Me.btnSettings = New System.Windows.Forms.Button()
+        Me.cmsSettings = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.mnuDevice = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuOthers = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlMain.SuspendLayout()
         CType(Me.dgvAssignments, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlControls.SuspendLayout()
+        Me.cmsSettings.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -149,7 +154,7 @@ Partial Class frmAdmin
         Me.btnCount.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btnCount.Image = CType(resources.GetObject("btnCount.Image"), System.Drawing.Image)
         Me.btnCount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCount.Location = New System.Drawing.Point(966, 11)
+        Me.btnCount.Location = New System.Drawing.Point(975, 11)
         Me.btnCount.Name = "btnCount"
         Me.btnCount.Size = New System.Drawing.Size(90, 40)
         Me.btnCount.TabIndex = 9
@@ -181,7 +186,7 @@ Partial Class frmAdmin
         Me.btnAddUser.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btnAddUser.Image = Global.QueueManagementSystem.My.Resources.Resources.plus
         Me.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAddUser.Location = New System.Drawing.Point(1061, 11)
+        Me.btnAddUser.Location = New System.Drawing.Point(1080, 11)
         Me.btnAddUser.Name = "btnAddUser"
         Me.btnAddUser.Padding = New System.Windows.Forms.Padding(2)
         Me.btnAddUser.Size = New System.Drawing.Size(80, 40)
@@ -273,11 +278,44 @@ Partial Class frmAdmin
         '
         Me.TimerRefresh.Interval = 10000
         '
+        'btnSettings
+        '
+        Me.btnSettings.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSettings.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.btnSettings.ContextMenuStrip = Me.cmsSettings
+        Me.btnSettings.Image = Global.QueueManagementSystem.My.Resources.Resources.setting1
+        Me.btnSettings.Location = New System.Drawing.Point(1092, 12)
+        Me.btnSettings.Name = "btnSettings"
+        Me.btnSettings.Size = New System.Drawing.Size(45, 40)
+        Me.btnSettings.TabIndex = 2
+        Me.btnSettings.UseVisualStyleBackColor = False
+        '
+        'cmsSettings
+        '
+        Me.cmsSettings.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmsSettings.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuDevice, Me.mnuOthers})
+        Me.cmsSettings.Name = "cmsSettings"
+        Me.cmsSettings.Size = New System.Drawing.Size(122, 48)
+        '
+        'mnuDevice
+        '
+        Me.mnuDevice.CheckOnClick = True
+        Me.mnuDevice.Name = "mnuDevice"
+        Me.mnuDevice.Size = New System.Drawing.Size(121, 22)
+        Me.mnuDevice.Text = "Devices"
+        '
+        'mnuOthers
+        '
+        Me.mnuOthers.Name = "mnuOthers"
+        Me.mnuOthers.Size = New System.Drawing.Size(121, 22)
+        Me.mnuOthers.Text = "Others"
+        '
         'frmAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1198, 520)
+        Me.Controls.Add(Me.btnSettings)
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.lblTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -289,6 +327,7 @@ Partial Class frmAdmin
         CType(Me.dgvAssignments, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlControls.ResumeLayout(False)
         Me.pnlControls.PerformLayout()
+        Me.cmsSettings.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -309,4 +348,8 @@ Partial Class frmAdmin
     Friend WithEvents btnAddUser As Button
     Friend WithEvents btnSService As Button
     Friend WithEvents btnCount As Button
+    Friend WithEvents btnSettings As Button
+    Friend WithEvents cmsSettings As ContextMenuStrip
+    Friend WithEvents mnuDevice As ToolStripMenuItem
+    Friend WithEvents mnuOthers As ToolStripMenuItem
 End Class

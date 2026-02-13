@@ -151,6 +151,7 @@
     <Compile Include="frmAddUser.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReceiptPrinter80.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmAddUser.resx">
@@ -201,6 +202,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\plus.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
