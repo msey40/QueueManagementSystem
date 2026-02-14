@@ -20,6 +20,7 @@ Partial Class frmKiosk
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmKiosk))
         Me.lblWelcome = New System.Windows.Forms.Label()
         Me.lblInstruction = New System.Windows.Forms.Label()
         Me.cmbService = New System.Windows.Forms.ComboBox()
@@ -29,7 +30,7 @@ Partial Class frmKiosk
         Me.lblTicketNumber = New System.Windows.Forms.Label()
         Me.lblYourTicket = New System.Windows.Forms.Label()
         Me.TimerReset = New System.Windows.Forms.Timer(Me.components)
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.btnKioskSettings = New System.Windows.Forms.Button()
         Me.pnlTicket.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -150,13 +151,19 @@ Partial Class frmKiosk
         '
         Me.TimerReset.Interval = 3000
         '
-        'ComboBox1
+        'btnKioskSettings
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(23, 228)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(197, 21)
-        Me.ComboBox1.TabIndex = 5
+        Me.btnKioskSettings.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnKioskSettings.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.btnKioskSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnKioskSettings.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnKioskSettings.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnKioskSettings.Image = CType(resources.GetObject("btnKioskSettings.Image"), System.Drawing.Image)
+        Me.btnKioskSettings.Location = New System.Drawing.Point(995, 24)
+        Me.btnKioskSettings.Name = "btnKioskSettings"
+        Me.btnKioskSettings.Size = New System.Drawing.Size(47, 42)
+        Me.btnKioskSettings.TabIndex = 5
+        Me.btnKioskSettings.UseVisualStyleBackColor = False
         '
         'frmKiosk
         '
@@ -164,7 +171,7 @@ Partial Class frmKiosk
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1080, 818)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.btnKioskSettings)
         Me.Controls.Add(Me.pnlTicket)
         Me.Controls.Add(Me.btnGetTicket)
         Me.Controls.Add(Me.cmbService)
@@ -192,5 +199,5 @@ Partial Class frmKiosk
     Friend WithEvents lblTicketNumber As Label
     Friend WithEvents lblThanks As Label
     Friend WithEvents TimerReset As Timer
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents btnKioskSettings As Button
 End Class

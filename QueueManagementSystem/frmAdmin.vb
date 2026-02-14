@@ -127,12 +127,10 @@ Public Class frmAdmin
         End If
         Application.ExitThread()
     End Sub
-
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         cmsSettings.Show(Cursor.Position)
     End Sub
     Private Sub mnuDevice_Click(sender As Object, e As EventArgs) Handles mnuDevice.Click
-        Process.Start("rundll32.exe", "printui.dll,PrintUIEntry /il")
+        frmDevices.ShowDialog()
     End Sub
-
 End Class

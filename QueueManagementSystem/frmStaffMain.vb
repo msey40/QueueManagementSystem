@@ -310,11 +310,18 @@ Public Class frmStaffMain
             MessageBox.Show("Error confirming services: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private isOpenMonitor As Boolean = False
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        frmMonitor.Show()
-        frmMonitor.Left = Screen.PrimaryScreen.Bounds.Width
-        frmMonitor.Top = 0
-        frmMonitor.WindowState = FormWindowState.Maximized
+        If Not isOpenMonitor Then
+            frmMonitor.Show()
+            frmMonitor.Left = Screen.PrimaryScreen.Bounds.Width
+            frmMonitor.Top = 0
+            frmMonitor.WindowState = FormWindowState.Maximized
+            isOpenMonitor = True
+        Else
+            frmMonitor.Close()
+            isOpenMonitor = False
+        End If
     End Sub
     ' Form-level variable to track admin-assigned services
     Private adminAssignedIds As New HashSet(Of Integer)

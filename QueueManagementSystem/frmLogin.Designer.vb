@@ -47,10 +47,10 @@ Partial Class frmLogin
         Me.pnlMain.Controls.Add(Me.txtUsername)
         Me.pnlMain.Controls.Add(Me.lblUsername)
         Me.pnlMain.Controls.Add(Me.lblTitle)
-        Me.pnlMain.Location = New System.Drawing.Point(60, 32)
-        Me.pnlMain.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.pnlMain.Location = New System.Drawing.Point(36, 32)
+        Me.pnlMain.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(390, 211)
+        Me.pnlMain.Size = New System.Drawing.Size(433, 211)
         Me.pnlMain.TabIndex = 0
         '
         'lblError
@@ -58,7 +58,7 @@ Partial Class frmLogin
         Me.lblError.AutoSize = True
         Me.lblError.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblError.ForeColor = System.Drawing.Color.Red
-        Me.lblError.Location = New System.Drawing.Point(120, 191)
+        Me.lblError.Location = New System.Drawing.Point(119, 194)
         Me.lblError.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblError.Name = "lblError"
         Me.lblError.Size = New System.Drawing.Size(0, 15)
@@ -72,7 +72,7 @@ Partial Class frmLogin
         Me.btnExit.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.White
         Me.btnExit.Location = New System.Drawing.Point(120, 160)
-        Me.btnExit.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnExit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(105, 32)
         Me.btnExit.TabIndex = 5
@@ -87,7 +87,7 @@ Partial Class frmLogin
         Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLogin.ForeColor = System.Drawing.Color.White
         Me.btnLogin.Location = New System.Drawing.Point(241, 160)
-        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(105, 32)
         Me.btnLogin.TabIndex = 4
@@ -98,8 +98,8 @@ Partial Class frmLogin
         '
         Me.chkShowPassword.AutoSize = True
         Me.chkShowPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowPassword.Location = New System.Drawing.Point(120, 126)
-        Me.chkShowPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkShowPassword.Location = New System.Drawing.Point(120, 134)
+        Me.chkShowPassword.Margin = New System.Windows.Forms.Padding(2)
         Me.chkShowPassword.Name = "chkShowPassword"
         Me.chkShowPassword.Size = New System.Drawing.Size(108, 19)
         Me.chkShowPassword.TabIndex = 3
@@ -108,14 +108,14 @@ Partial Class frmLogin
         '
         'txtPassword
         '
-        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPassword.Location = New System.Drawing.Point(120, 98)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtPassword.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(226, 25)
+        Me.txtPassword.Size = New System.Drawing.Size(226, 30)
         Me.txtPassword.TabIndex = 2
-        Me.txtPassword.UseSystemPasswordChar = True
         '
         'lblPassword
         '
@@ -130,11 +130,12 @@ Partial Class frmLogin
         '
         'txtUsername
         '
-        Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUsername.Location = New System.Drawing.Point(120, 65)
-        Me.txtUsername.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsername.Location = New System.Drawing.Point(120, 62)
+        Me.txtUsername.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtUsername.Multiline = True
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(226, 25)
+        Me.txtUsername.Size = New System.Drawing.Size(226, 30)
         Me.txtUsername.TabIndex = 1
         '
         'lblUsername
@@ -168,7 +169,7 @@ Partial Class frmLogin
         Me.ClientSize = New System.Drawing.Size(510, 292)
         Me.Controls.Add(Me.pnlMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.Name = "frmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

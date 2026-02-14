@@ -117,28 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="TimerReset.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnKioskSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAoBJREFUWEfNl7mKFVEQhj8F0UAGIwUTTcxcQJ9AIw00ERRfwAUnccFcwUjBLdRA
-        QzXTRHDEhUkccH0BxQdQcwXlu9SRpu7p7tt6G/ygh3Prr1N17/RZqmA4a4BnwK/0aFMbnVOR8ARwLB7H
-        2k5m5zG4D3zORuBTaHNhO/A9ftX5pL0GniebaFNr4lxjGMuYM7EzJr0DbsX4MbANuByfr+VJYVPTR1/n
-        +NkYxnK8K0/K7AjHjw3b/rTY7gKbG3pB273ke6ChG1ObOaqsAr4CH7IAbAEuAOuzUEEffbdmIWJ/i1xT
-        rI5veDULc+RK5DBXlTPhsC8Lc2BvxDZHJ4/C0YXUxm7gOvAynhvAnuzUwFjGNHYvG8L5XBaAdcBS6D9j
-        2/k41qamT8ZY6sbu5VI4LyS7gV1AakeSJtrU9FmbNGOpGXsKV+Qi8AB4E453shPwJLRNWWigpo++mduh
-        vQUeRs7Jbij/0i/AC+AmsDFNLufDwWSvcSh88343prE9Mc1VXtlkcDw5Z1xwP7KxA32d04U5zT35czir
-        iVfAcjZ2oK9zujDn//MFxngFtQuryZ9XMGQRusD66FqEHlhTi7BsQ7dG2YZumcy/bkO3tpo5zHW67VJq
-        O4g8XMpBdDRpMstBdDHZq/QdxU9DbzuKc3IZdBT/zWXkWFsb5TKySupkzOvYmMY+m4VCKUgsGsbCYscc
-        1YKkqySzvBpaklnGZYxtjurql1pRamGprTwWnm1FqQVr09eCttBblBZKWf6+oyyvXTTa1EpZXhazB1sp
-        y409EzYRZc8PaUxWkq00JsaauTHpw/bLNixjuza31qwLG1B/Va05tXEdHVvwcoE1H22D2/PfcMvlu5J0
-        sXgAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
-  </metadata>
 </root>

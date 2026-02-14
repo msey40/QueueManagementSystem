@@ -6,8 +6,6 @@ Public Class frmKiosk
     Private PRINTER_NAME As String = My.Settings.printerName
     Private Sub frmKiosk_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        loadprintername()
-
         ' Ensure database connection is ready
         Try
             If ModuleDatabase.cn.State <> ConnectionState.Open Then
@@ -34,23 +32,6 @@ Public Class frmKiosk
         Catch ex As Exception
             MessageBox.Show("Form load error: " & ex.Message, "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
-
-    Private Sub loadprintername()
-        ComboBox1.Items.Clear()
-
-        For Each printer As String In PrinterSettings.InstalledPrinters
-            ComboBox1.Items.Add(printer)
-        Next
-
-        ' Load saved printer
-        If My.Settings.printerName <> "" Then
-            ComboBox1.Text = My.Settings.printerName
-        Else
-            ' Fallback to default printer
-            Dim ps As New PrinterSettings()
-            ComboBox1.Text = ps.PrinterName
-        End If
     End Sub
 
     Private Sub btnGetTicket_Click(sender As Object, e As EventArgs) Handles btnGetTicket.Click
@@ -114,7 +95,6 @@ Public Class frmKiosk
     Private Sub PrintQueueTicket(ticketNum As String, serviceName As String)
         Try
             Dim printer As New ReceiptPrinter80(PRINTER_NAME)
-            MsgBox(PRINTER_NAME)
             ' Configure Header
             printer.AddReceiptHeader("OUR BANK / CLINIC", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "QUEUE TICKET")
 
@@ -167,8 +147,7 @@ Public Class frmKiosk
         lblTicketNumber.Text = "-----"
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        My.Settings.printerName = ComboBox1.Text
-        My.Settings.Save()
+    Private Sub btnKioskSettings_Click(sender As Object, e As EventArgs) Handles btnKioskSettings.Click
+        frmConfirm.Show()
     End Sub
 End Class
