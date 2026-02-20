@@ -13,7 +13,6 @@ Public Class frmLogin
         Else
             txtPassword.UseSystemPasswordChar = False
         End If
-        txtPassword.Focus()
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click

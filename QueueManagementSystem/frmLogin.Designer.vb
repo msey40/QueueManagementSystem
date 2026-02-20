@@ -108,13 +108,13 @@ Partial Class frmLogin
         '
         'txtPassword
         '
-        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPassword.Location = New System.Drawing.Point(120, 98)
+        Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPassword.Location = New System.Drawing.Point(124, 98)
         Me.txtPassword.Margin = New System.Windows.Forms.Padding(2)
         Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(226, 30)
+        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(46)
+        Me.txtPassword.Size = New System.Drawing.Size(225, 30)
         Me.txtPassword.TabIndex = 2
         '
         'lblPassword
@@ -124,18 +124,18 @@ Partial Class frmLogin
         Me.lblPassword.Location = New System.Drawing.Point(45, 98)
         Me.lblPassword.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPassword.Name = "lblPassword"
-        Me.lblPassword.Size = New System.Drawing.Size(70, 19)
+        Me.lblPassword.Size = New System.Drawing.Size(82, 19)
         Me.lblPassword.TabIndex = 3
-        Me.lblPassword.Text = "Password:"
+        Me.lblPassword.Text = "Password  : "
         '
         'txtUsername
         '
         Me.txtUsername.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUsername.Location = New System.Drawing.Point(120, 62)
+        Me.txtUsername.Location = New System.Drawing.Point(124, 62)
         Me.txtUsername.Margin = New System.Windows.Forms.Padding(2)
         Me.txtUsername.Multiline = True
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(226, 30)
+        Me.txtUsername.Size = New System.Drawing.Size(225, 30)
         Me.txtUsername.TabIndex = 1
         '
         'lblUsername
@@ -145,9 +145,9 @@ Partial Class frmLogin
         Me.lblUsername.Location = New System.Drawing.Point(45, 65)
         Me.lblUsername.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblUsername.Name = "lblUsername"
-        Me.lblUsername.Size = New System.Drawing.Size(74, 19)
+        Me.lblUsername.Size = New System.Drawing.Size(78, 19)
         Me.lblUsername.TabIndex = 1
-        Me.lblUsername.Text = "Username:"
+        Me.lblUsername.Text = "Username :"
         '
         'lblTitle
         '
@@ -171,6 +171,7 @@ Partial Class frmLogin
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Queue Management System - Login"

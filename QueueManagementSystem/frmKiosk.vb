@@ -51,10 +51,10 @@ Public Class frmKiosk
 
             ' Prepare insert values
             Dim values As New Dictionary(Of String, Object) From {
-                {"service_id", serviceId},
-                {"status", "waiting"},
-                {"joined_at", DateTime.Now}
-            }
+            {"service_id", serviceId},
+            {"status", "waiting"},
+            {"joined_at", DateTime.Now}
+        }
 
             ' Insert new queue entry
             Dim newQueueId As Integer = ModuleDatabase.SaveWithImage("queue", values)
@@ -88,10 +88,20 @@ Public Class frmKiosk
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Error: " & ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            ' Better logging
+            Dim errMsg As String = "Error inserting ticket: " & ex.Message
+            If TypeOf ex Is MySqlException Then
+                Dim mysqlEx = DirectCast(ex, MySqlException)
+                errMsg &= vbCrLf & vbCrLf &
+                  "MySQL Error Number: " & mysqlEx.Number & vbCrLf &
+                  "MySQL State: " & mysqlEx.SqlState & vbCrLf &
+                  "Full Stack: " & ex.StackTrace
+            End If
+
+            Console.WriteLine(errMsg)                  ' See in Output window
+            MessageBox.Show(errMsg, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    ' New helper method for printing
     Private Sub PrintQueueTicket(ticketNum As String, serviceName As String)
         Try
             Dim printer As New ReceiptPrinter80(PRINTER_NAME)

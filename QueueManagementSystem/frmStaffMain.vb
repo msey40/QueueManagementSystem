@@ -117,6 +117,7 @@ Public Class frmStaffMain
             WHERE q.status IN ('waiting', 'called')
               AND cas.counter_id = @counterId
               AND cas.is_active = 1
+              AND q.join_date = CURDATE()     
             ORDER BY 
                 CASE WHEN q.status = 'called' THEN 0 ELSE 1 END,   -- Called first
                 q.joined_at ASC"

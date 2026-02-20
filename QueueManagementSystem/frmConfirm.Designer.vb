@@ -31,7 +31,9 @@ Partial Class frmConfirm
         Me.lblcfPw = New System.Windows.Forms.Label()
         Me.btncfExit = New System.Windows.Forms.Button()
         Me.btncfSave = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblExit
@@ -61,7 +63,7 @@ Partial Class frmConfirm
         '
         Me.lblcfName.AutoSize = True
         Me.lblcfName.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblcfName.Location = New System.Drawing.Point(24, 110)
+        Me.lblcfName.Location = New System.Drawing.Point(17, 34)
         Me.lblcfName.Name = "lblcfName"
         Me.lblcfName.Size = New System.Drawing.Size(65, 16)
         Me.lblcfName.TabIndex = 2
@@ -70,7 +72,7 @@ Partial Class frmConfirm
         'txtcfName
         '
         Me.txtcfName.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcfName.Location = New System.Drawing.Point(100, 103)
+        Me.txtcfName.Location = New System.Drawing.Point(93, 27)
         Me.txtcfName.Name = "txtcfName"
         Me.txtcfName.Size = New System.Drawing.Size(221, 23)
         Me.txtcfName.TabIndex = 3
@@ -89,7 +91,7 @@ Partial Class frmConfirm
         'txtcfPw
         '
         Me.txtcfPw.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcfPw.Location = New System.Drawing.Point(100, 163)
+        Me.txtcfPw.Location = New System.Drawing.Point(93, 87)
         Me.txtcfPw.Name = "txtcfPw"
         Me.txtcfPw.Size = New System.Drawing.Size(221, 23)
         Me.txtcfPw.TabIndex = 6
@@ -99,7 +101,7 @@ Partial Class frmConfirm
         '
         Me.lblcfPw.AutoSize = True
         Me.lblcfPw.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblcfPw.Location = New System.Drawing.Point(24, 163)
+        Me.lblcfPw.Location = New System.Drawing.Point(17, 87)
         Me.lblcfPw.Name = "lblcfPw"
         Me.lblcfPw.Size = New System.Drawing.Size(62, 16)
         Me.lblcfPw.TabIndex = 5
@@ -110,11 +112,11 @@ Partial Class frmConfirm
         Me.btncfExit.BackColor = System.Drawing.Color.IndianRed
         Me.btncfExit.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btncfExit.ForeColor = System.Drawing.SystemColors.Control
-        Me.btncfExit.Location = New System.Drawing.Point(100, 235)
+        Me.btncfExit.Location = New System.Drawing.Point(93, 159)
         Me.btncfExit.Name = "btncfExit"
         Me.btncfExit.Size = New System.Drawing.Size(100, 40)
         Me.btncfExit.TabIndex = 8
-        Me.btncfExit.Text = "Exit"
+        Me.btncfExit.Text = "Cancel"
         Me.btncfExit.UseVisualStyleBackColor = False
         '
         'btncfSave
@@ -122,33 +124,44 @@ Partial Class frmConfirm
         Me.btncfSave.BackColor = System.Drawing.Color.DodgerBlue
         Me.btncfSave.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btncfSave.ForeColor = System.Drawing.SystemColors.Control
-        Me.btncfSave.Location = New System.Drawing.Point(221, 235)
+        Me.btncfSave.Location = New System.Drawing.Point(214, 159)
         Me.btncfSave.Name = "btncfSave"
         Me.btncfSave.Size = New System.Drawing.Size(100, 40)
         Me.btncfSave.TabIndex = 9
         Me.btncfSave.Text = "Save"
         Me.btncfSave.UseVisualStyleBackColor = False
         '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel2.Controls.Add(Me.btncfSave)
+        Me.Panel2.Controls.Add(Me.lblcfName)
+        Me.Panel2.Controls.Add(Me.btncfExit)
+        Me.Panel2.Controls.Add(Me.txtcfName)
+        Me.Panel2.Controls.Add(Me.txtcfPw)
+        Me.Panel2.Controls.Add(Me.lblcfPw)
+        Me.Panel2.Location = New System.Drawing.Point(12, 72)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(362, 239)
+        Me.Panel2.TabIndex = 10
+        '
         'frmConfirm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(386, 341)
-        Me.Controls.Add(Me.btncfSave)
-        Me.Controls.Add(Me.btncfExit)
-        Me.Controls.Add(Me.txtcfPw)
-        Me.Controls.Add(Me.lblcfPw)
+        Me.BackColor = System.Drawing.Color.White
+        Me.ClientSize = New System.Drawing.Size(386, 348)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.txtcfName)
-        Me.Controls.Add(Me.lblcfName)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmConfirm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmConfirm"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -161,4 +174,5 @@ Partial Class frmConfirm
     Friend WithEvents lblcfPw As Label
     Friend WithEvents btncfExit As Button
     Friend WithEvents btncfSave As Button
+    Friend WithEvents Panel2 As Panel
 End Class

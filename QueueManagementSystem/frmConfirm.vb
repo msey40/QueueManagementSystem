@@ -1,6 +1,5 @@
 ﻿
 Imports MySql.Data.MySqlClient
-
 Public Class frmConfirm
     Private Sub frmConfirm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         setConnectionDatabase()
@@ -9,11 +8,8 @@ Public Class frmConfirm
         Me.Close()
         frmKiosk.Show()
     End Sub
-
     Private IsAdminVerified As Boolean = False
-
     Private Sub btncfSave_Click(sender As Object, e As EventArgs) Handles btncfSave.Click
-
         ' === Validation ===
         If String.IsNullOrWhiteSpace(txtcfName.Text) Then
             MessageBox.Show("Please enter name", "Validation Error",
@@ -68,9 +64,6 @@ Public Class frmConfirm
         End Try
 
     End Sub
-
-
-
     Private Sub btncfExit_Click(sender As Object, e As EventArgs) Handles btncfExit.Click
         Me.Close()
         frmKiosk.Show()
