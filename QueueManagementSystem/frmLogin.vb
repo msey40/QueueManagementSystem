@@ -5,13 +5,10 @@ Public Class frmLogin
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         setConnectionDatabase()
         txtUsername.Focus()
-    End Sub
-
-    Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
-        If chkShowPassword.Checked Then
-            txtPassword.UseSystemPasswordChar = True
-        Else
-            txtPassword.UseSystemPasswordChar = False
+        If My.Settings.rememberLogin = True Then
+            txtUsername.Text = My.Settings.lastUsername
+            txtPassword.Text = My.Settings.lastPassword
+            chkRemember.Checked = True
         End If
     End Sub
 
@@ -73,6 +70,17 @@ Public Class frmLogin
             lblError.Text = "Connection error: " & ex.Message
             MessageBox.Show(ex.Message & vbCrLf & ex.StackTrace, "Error")
         End Try
+        If chkRemember.Checked Then
+            My.Settings.lastUsername = txtUsername.Text
+            My.Settings.lastPassword = txtPassword.Text
+            My.Settings.rememberLogin = True
+        Else
+            My.Settings.lastUsername = ""
+            My.Settings.lastPassword = ""
+            My.Settings.rememberLogin = False
+        End If
+
+        My.Settings.Save()
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click

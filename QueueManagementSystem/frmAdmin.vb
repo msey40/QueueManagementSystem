@@ -19,7 +19,6 @@ Public Class frmAdmin
         SELECT 
             c.name AS 'Counter Name',
             s.name AS 'Service Name',
-            c.current_coun_id AS 'Counter ID',
             s.description AS 'Description',
             cs.counter_id,
             cs.service_id
@@ -78,8 +77,16 @@ Public Class frmAdmin
             Exit Sub
         End If
         Try
-            Dim counterId As Integer = Convert.ToInt32(dgvAssignments.SelectedRows(0).Cells(2).Value)
-            Dim serviceId As Integer = Convert.ToInt32(dgvAssignments.SelectedRows(0).Cells(3).Value)
+            Dim selectedRow As DataGridViewRow = dgvAssignments.SelectedRows(0)
+
+            Dim counterId As Integer = selectedRow.Cells("counter_id").Value
+            Dim serviceId As Integer = selectedRow.Cells("service_id").Value
+
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to remove this assignment?", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.No Then
+                Exit Sub
+            End If
+
             Dim sql As String = "DELETE FROM counter_services WHERE counter_id = @cid AND service_id = @sid"
             Using cmd As New MySqlCommand(sql, ModuleDatabase.cn)
                 cmd.Parameters.AddWithValue("@cid", counterId)
@@ -87,6 +94,7 @@ Public Class frmAdmin
                 If ModuleDatabase.cn.State <> ConnectionState.Open Then ModuleDatabase.cn.Open()
                 cmd.ExecuteNonQuery()
             End Using
+
 
             MessageBox.Show("Assignment removed successfully!", "Success")
             LoadAssignments()

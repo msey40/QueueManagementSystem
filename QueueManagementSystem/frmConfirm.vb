@@ -68,4 +68,5 @@ Public Class frmConfirm
         Me.Close()
         frmKiosk.Show()
     End Sub
+
 End Class

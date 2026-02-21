@@ -22,11 +22,12 @@ Partial Class frmLogin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogin))
         Me.pnlMain = New System.Windows.Forms.Panel()
+        Me.chkRemember = New System.Windows.Forms.CheckBox()
         Me.lblError = New System.Windows.Forms.Label()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.btnLogin = New System.Windows.Forms.Button()
-        Me.chkShowPassword = New System.Windows.Forms.CheckBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.lblPassword = New System.Windows.Forms.Label()
         Me.txtUsername = New System.Windows.Forms.TextBox()
@@ -38,10 +39,10 @@ Partial Class frmLogin
         'pnlMain
         '
         Me.pnlMain.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.pnlMain.Controls.Add(Me.chkRemember)
         Me.pnlMain.Controls.Add(Me.lblError)
         Me.pnlMain.Controls.Add(Me.btnExit)
         Me.pnlMain.Controls.Add(Me.btnLogin)
-        Me.pnlMain.Controls.Add(Me.chkShowPassword)
         Me.pnlMain.Controls.Add(Me.txtPassword)
         Me.pnlMain.Controls.Add(Me.lblPassword)
         Me.pnlMain.Controls.Add(Me.txtUsername)
@@ -50,8 +51,20 @@ Partial Class frmLogin
         Me.pnlMain.Location = New System.Drawing.Point(36, 32)
         Me.pnlMain.Margin = New System.Windows.Forms.Padding(2)
         Me.pnlMain.Name = "pnlMain"
-        Me.pnlMain.Size = New System.Drawing.Size(433, 211)
+        Me.pnlMain.Size = New System.Drawing.Size(433, 227)
         Me.pnlMain.TabIndex = 0
+        '
+        'chkRemember
+        '
+        Me.chkRemember.AutoSize = True
+        Me.chkRemember.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkRemember.Location = New System.Drawing.Point(126, 134)
+        Me.chkRemember.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkRemember.Name = "chkRemember"
+        Me.chkRemember.Size = New System.Drawing.Size(99, 17)
+        Me.chkRemember.TabIndex = 7
+        Me.chkRemember.Text = "Remember Me"
+        Me.chkRemember.UseVisualStyleBackColor = False
         '
         'lblError
         '
@@ -71,7 +84,7 @@ Partial Class frmLogin
         Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnExit.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.White
-        Me.btnExit.Location = New System.Drawing.Point(120, 160)
+        Me.btnExit.Location = New System.Drawing.Point(120, 167)
         Me.btnExit.Margin = New System.Windows.Forms.Padding(2)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(105, 32)
@@ -81,30 +94,19 @@ Partial Class frmLogin
         '
         'btnLogin
         '
+        Me.btnLogin.AccessibleName = ""
         Me.btnLogin.BackColor = System.Drawing.Color.DodgerBlue
         Me.btnLogin.FlatAppearance.BorderSize = 0
         Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnLogin.ForeColor = System.Drawing.Color.White
-        Me.btnLogin.Location = New System.Drawing.Point(241, 160)
+        Me.btnLogin.Location = New System.Drawing.Point(241, 167)
         Me.btnLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(105, 32)
         Me.btnLogin.TabIndex = 4
         Me.btnLogin.Text = "Login"
         Me.btnLogin.UseVisualStyleBackColor = False
-        '
-        'chkShowPassword
-        '
-        Me.chkShowPassword.AutoSize = True
-        Me.chkShowPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowPassword.Location = New System.Drawing.Point(120, 134)
-        Me.chkShowPassword.Margin = New System.Windows.Forms.Padding(2)
-        Me.chkShowPassword.Name = "chkShowPassword"
-        Me.chkShowPassword.Size = New System.Drawing.Size(108, 19)
-        Me.chkShowPassword.TabIndex = 3
-        Me.chkShowPassword.Text = "Show password"
-        Me.chkShowPassword.UseVisualStyleBackColor = True
         '
         'txtPassword
         '
@@ -163,12 +165,14 @@ Partial Class frmLogin
         '
         'frmLogin
         '
+        Me.AcceptButton = Me.btnLogin
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(510, 292)
         Me.Controls.Add(Me.pnlMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -187,9 +191,8 @@ Partial Class frmLogin
     Friend WithEvents txtUsername As TextBox
     Friend WithEvents lblPassword As Label
     Friend WithEvents txtPassword As TextBox
-    Friend WithEvents chkShowPassword As CheckBox
     Friend WithEvents btnLogin As Button
     Friend WithEvents btnExit As Button
     Friend WithEvents lblError As Label
-
+    Friend WithEvents chkRemember As CheckBox
 End Class

@@ -25,7 +25,9 @@ Partial Class frmStaffMain
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStaffMain))
         Me.pnlHeader = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.lblUser = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlMain = New System.Windows.Forms.Panel()
@@ -40,7 +42,6 @@ Partial Class frmStaffMain
         Me.lblStatus = New System.Windows.Forms.Label()
         Me.lblCounter = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.btnCallNext = New System.Windows.Forms.Button()
         Me.btnServed = New System.Windows.Forms.Button()
         Me.TimerRefresh = New System.Windows.Forms.Timer(Me.components)
@@ -55,6 +56,7 @@ Partial Class frmStaffMain
         'pnlHeader
         '
         Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.pnlHeader.Controls.Add(Me.Button1)
         Me.pnlHeader.Controls.Add(Me.lblUser)
         Me.pnlHeader.Controls.Add(Me.lblTitle)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
@@ -62,6 +64,16 @@ Partial Class frmStaffMain
         Me.pnlHeader.Name = "pnlHeader"
         Me.pnlHeader.Size = New System.Drawing.Size(1021, 49)
         Me.pnlHeader.TabIndex = 0
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(474, 12)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(104, 23)
+        Me.Button1.TabIndex = 13
+        Me.Button1.Text = "Show 2nd Screen"
+        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'lblUser
         '
@@ -151,7 +163,7 @@ Partial Class frmStaffMain
         Me.dgvQueue.RowTemplate.Height = 50
         Me.dgvQueue.RowTemplate.ReadOnly = True
         Me.dgvQueue.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvQueue.Size = New System.Drawing.Size(1018, 319)
+        Me.dgvQueue.Size = New System.Drawing.Size(1018, 335)
         Me.dgvQueue.TabIndex = 2
         '
         'pnlControls
@@ -207,10 +219,10 @@ Partial Class frmStaffMain
         'lblServices
         '
         Me.lblServices.AutoSize = True
-        Me.lblServices.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblServices.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblServices.Location = New System.Drawing.Point(29, 37)
         Me.lblServices.Name = "lblServices"
-        Me.lblServices.Size = New System.Drawing.Size(99, 19)
+        Me.lblServices.Size = New System.Drawing.Size(99, 17)
         Me.lblServices.TabIndex = 8
         Me.lblServices.Text = "Select Services:"
         '
@@ -251,10 +263,10 @@ Partial Class frmStaffMain
         'lblCounter
         '
         Me.lblCounter.AutoSize = True
-        Me.lblCounter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.lblCounter.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCounter.Location = New System.Drawing.Point(29, 9)
         Me.lblCounter.Name = "lblCounter"
-        Me.lblCounter.Size = New System.Drawing.Size(101, 19)
+        Me.lblCounter.Size = New System.Drawing.Size(100, 17)
         Me.lblCounter.TabIndex = 1
         Me.lblCounter.Text = "Select Counter:"
         '
@@ -262,49 +274,51 @@ Partial Class frmStaffMain
         '
         Me.Panel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.btnCallNext)
         Me.Panel1.Controls.Add(Me.btnServed)
-        Me.Panel1.Location = New System.Drawing.Point(690, 0)
+        Me.Panel1.Location = New System.Drawing.Point(624, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(295, 136)
+        Me.Panel1.Size = New System.Drawing.Size(367, 136)
         Me.Panel1.TabIndex = 11
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(17, 8)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(120, 23)
-        Me.Button1.TabIndex = 13
-        Me.Button1.Text = "Show 2nd Screen"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'btnCallNext
         '
+        Me.btnCallNext.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCallNext.BackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(243, Byte), Integer))
         Me.btnCallNext.FlatAppearance.BorderSize = 0
         Me.btnCallNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCallNext.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.btnCallNext.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCallNext.ForeColor = System.Drawing.Color.White
-        Me.btnCallNext.Location = New System.Drawing.Point(17, 50)
+        Me.btnCallNext.Image = CType(resources.GetObject("btnCallNext.Image"), System.Drawing.Image)
+        Me.btnCallNext.Location = New System.Drawing.Point(30, 12)
         Me.btnCallNext.Name = "btnCallNext"
-        Me.btnCallNext.Size = New System.Drawing.Size(120, 37)
+        Me.btnCallNext.Padding = New System.Windows.Forms.Padding(5)
+        Me.btnCallNext.Size = New System.Drawing.Size(136, 110)
         Me.btnCallNext.TabIndex = 3
         Me.btnCallNext.Text = "Call Next"
+        Me.btnCallNext.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnCallNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.btnCallNext.UseVisualStyleBackColor = False
         '
         'btnServed
         '
+        Me.btnServed.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnServed.BackColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.btnServed.FlatAppearance.BorderSize = 0
         Me.btnServed.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnServed.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.btnServed.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnServed.ForeColor = System.Drawing.Color.White
-        Me.btnServed.Location = New System.Drawing.Point(159, 50)
+        Me.btnServed.Image = CType(resources.GetObject("btnServed.Image"), System.Drawing.Image)
+        Me.btnServed.Location = New System.Drawing.Point(199, 12)
         Me.btnServed.Name = "btnServed"
-        Me.btnServed.Size = New System.Drawing.Size(120, 37)
+        Me.btnServed.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+        Me.btnServed.Size = New System.Drawing.Size(136, 110)
         Me.btnServed.TabIndex = 4
         Me.btnServed.Text = "Mark Served"
+        Me.btnServed.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.btnServed.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.btnServed.UseVisualStyleBackColor = False
         '
         'TimerRefresh
@@ -320,6 +334,7 @@ Partial Class frmStaffMain
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.pnlHeader)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmStaffMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Staff Counter - Queue Management"

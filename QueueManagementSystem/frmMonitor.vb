@@ -32,7 +32,9 @@ Public Class frmMonitor
                 INNER JOIN counters c ON q.called_counter_id = c.counter_id
                 INNER JOIN services s ON q.service_id = s.service_id
                 WHERE q.status = 'called'
+               AND q.join_date = CURDATE() 
                 ORDER BY q.called_at DESC"
+
 
             Dim dt As New DataTable
             ModuleDatabase.FillDynamicTable(sql, dt)

@@ -27,6 +27,7 @@ Partial Class frmAddUser
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAddUser))
         Me.lblName = New DevComponents.DotNetBar.LabelX()
         Me.lblpw = New DevComponents.DotNetBar.LabelX()
         Me.txtUsername = New System.Windows.Forms.TextBox()
@@ -303,6 +304,7 @@ Partial Class frmAddUser
         Me.ClientSize = New System.Drawing.Size(848, 450)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.dgvUser)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "frmAddUser"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
