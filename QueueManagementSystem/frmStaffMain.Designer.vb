@@ -27,7 +27,6 @@ Partial Class frmStaffMain
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmStaffMain))
         Me.pnlHeader = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.lblUser = New System.Windows.Forms.Label()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.pnlMain = New System.Windows.Forms.Panel()
@@ -45,6 +44,7 @@ Partial Class frmStaffMain
         Me.btnCallNext = New System.Windows.Forms.Button()
         Me.btnServed = New System.Windows.Forms.Button()
         Me.TimerRefresh = New System.Windows.Forms.Timer(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.pnlHeader.SuspendLayout()
         Me.pnlMain.SuspendLayout()
         CType(Me.dgvQueue, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,23 +65,13 @@ Partial Class frmStaffMain
         Me.pnlHeader.Size = New System.Drawing.Size(1021, 49)
         Me.pnlHeader.TabIndex = 0
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(474, 12)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(104, 23)
-        Me.Button1.TabIndex = 13
-        Me.Button1.Text = "Show 2nd Screen"
-        Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
-        '
         'lblUser
         '
         Me.lblUser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblUser.AutoSize = True
         Me.lblUser.Font = New System.Drawing.Font("Segoe UI Semibold", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUser.ForeColor = System.Drawing.Color.White
-        Me.lblUser.Location = New System.Drawing.Point(822, 10)
+        Me.lblUser.Location = New System.Drawing.Point(812, 10)
         Me.lblUser.Name = "lblUser"
         Me.lblUser.Size = New System.Drawing.Size(163, 30)
         Me.lblUser.TabIndex = 1
@@ -126,7 +116,7 @@ Partial Class frmStaffMain
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Tahoma", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(215, Byte), Integer))
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
@@ -190,14 +180,14 @@ Partial Class frmStaffMain
         Me.Panel2.Controls.Add(Me.lblCounter)
         Me.Panel2.Location = New System.Drawing.Point(3, 3)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(604, 135)
+        Me.Panel2.Size = New System.Drawing.Size(594, 135)
         Me.Panel2.TabIndex = 12
         '
         'checkedListServices
         '
         Me.checkedListServices.CheckOnClick = True
         Me.checkedListServices.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.checkedListServices.Location = New System.Drawing.Point(155, 37)
+        Me.checkedListServices.Location = New System.Drawing.Point(170, 37)
         Me.checkedListServices.Name = "checkedListServices"
         Me.checkedListServices.Size = New System.Drawing.Size(211, 84)
         Me.checkedListServices.TabIndex = 9
@@ -245,7 +235,7 @@ Partial Class frmStaffMain
         Me.cmbCounter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCounter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbCounter.FormattingEnabled = True
-        Me.cmbCounter.Location = New System.Drawing.Point(155, 7)
+        Me.cmbCounter.Location = New System.Drawing.Point(170, 6)
         Me.cmbCounter.Name = "cmbCounter"
         Me.cmbCounter.Size = New System.Drawing.Size(211, 25)
         Me.cmbCounter.TabIndex = 2
@@ -276,9 +266,9 @@ Partial Class frmStaffMain
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Controls.Add(Me.btnCallNext)
         Me.Panel1.Controls.Add(Me.btnServed)
-        Me.Panel1.Location = New System.Drawing.Point(624, 0)
+        Me.Panel1.Location = New System.Drawing.Point(624, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(367, 136)
+        Me.Panel1.Size = New System.Drawing.Size(367, 133)
         Me.Panel1.TabIndex = 11
         '
         'btnCallNext
@@ -324,6 +314,16 @@ Partial Class frmStaffMain
         'TimerRefresh
         '
         Me.TimerRefresh.Interval = 5000
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(474, 12)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(104, 23)
+        Me.Button1.TabIndex = 13
+        Me.Button1.Text = "Show 2nd Screen"
+        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'frmStaffMain
         '

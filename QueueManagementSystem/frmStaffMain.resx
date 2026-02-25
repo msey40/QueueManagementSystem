@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Button1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCallNext.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAvdJREFUWEftls9LVFEUx79vZt78cDR11NFpzBlHZ/wxai6mVrlsl9JfkES6yUVI
+        vQAADr0BR/uQrQAAAvdJREFUWEftls9LVFEUx79vZt78cDR11NFpzBlHZ/wxai6mVrlsl9JfkES6yUVI
         i4qIpLBFRCgFRWqpWBZmmZRoZVJWC+0XFilCPwwSlNSiEIrePXHHeXR5M4qaMC38wNu8+zmXy733nHOB
         ddb5T7ABSNL+1BALwKH9GQE7gATtz6XYB4BC337tYIhSwanXDgocErxK7eBikL2shpy7GtXAGq0A4FPC
         zkraVNejOi1aAcAGPra7yUblF2yqV62VIjEdV7SDijuYkl55RQ08qXHuW/K3kv81Y5nNQwRJ4k6HxjEB
@@ -143,7 +140,7 @@
   <data name="btnServed.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAB5dJREFUWEeVVwtQVNcZPriwChQNj10XFNgFTIg8VSpKhgZtGiBIyqMqWhCDAV9p
+        vQAADr0BR/uQrQAAB5dJREFUWEeVVwtQVNcZPriwChQNj10XFNgFTIg8VSpKhgZtGiBIyqMqWhCDAV9p
         yrO1kar1MZEQU4MQ1LQ+mqYSiXSSmY7EFLSKFh8ZikMAAy5vkKfR5SXC/Tr/WS5sLixjvpl/Lpe7c77v
         /Od/HcaMw4YxdtbEZJZOoVDB1nY+7OyUUCqVUCimN6VCCdV8e5ibm4Mxli9d8MdAwxjrykg/hDu3O1FT
         PYTamn50derQ06VDd+f01ts9AIwBb2xOhLm5JYl4X7rws+K7kye/AKGnC2htAQb7+SuEUeMmYt3aGOHw

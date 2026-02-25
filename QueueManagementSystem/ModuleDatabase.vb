@@ -20,10 +20,16 @@ Module ModuleDatabase
     Dim connection As String
     Dim sqlCmd As MySqlCommand
     Dim objDataAdapter As MySqlDataAdapter
+
     Public Sub setConnectionDatabase()
         Try
+            Dim host As String = GetConfigValue("serverAddress")
+            Dim port As String = GetConfigValue("ServerPort")
+            Dim user As String = GetConfigValue("user")
+            Dim pass As String = GetConfigValue("password")
+            Dim dbName As String = GetConfigValue("dbName")
             ' Updated connection string for MySQL 8
-            connection = $"SERVER={"localhost"};DATABASE={"qeue_sys"};UID={"root"};PWD=;PORT={"3306"};Charset=utf8mb4;"
+            connection = $"SERVER={host};DATABASE={dbName};UID={user};PWD=;PORT={port};Charset=utf8mb4;"
             cn = New MySqlConnection
             With cn
                 Try
