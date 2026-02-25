@@ -156,8 +156,4 @@ Public Class frmKiosk
         cmbService.SelectedIndex = -1
         lblTicketNumber.Text = "-----"
     End Sub
-
-    Private Sub btnKioskSettings_Click(sender As Object, e As EventArgs) Handles btnKioskSettings.Click
-        frmConfirm.Show()
-    End Sub
 End Class
