@@ -11,7 +11,6 @@ Public Class frmAdmin
         ModuleDatabase.FillComboBox(cmbService, "services", "service_id", "name", "", "created_at Desc")
         ' Load current assignments
         LoadAssignments()
-        TimerRefresh.Start()
     End Sub
 
     Private Sub LoadAssignments()
@@ -108,17 +107,12 @@ Public Class frmAdmin
         LoadAssignments()
     End Sub
 
-    Private Sub TimerRefresh_Tick(sender As Object, e As EventArgs) Handles TimerRefresh.Tick
-        ' Optional: auto-refresh every 10 seconds
-        LoadAssignments()
-    End Sub
-
     Private Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
         frmAddUser.ShowDialog()
     End Sub
 
     Private Sub btnSService_Click(sender As Object, e As EventArgs) Handles btnSService.Click
-        frmService.ShowDialog()
+        frmService.Show()
         ModuleDatabase.FillComboBox(cmbService, "services", "service_id", "name", "", "created_at Desc")
     End Sub
 

@@ -304,9 +304,12 @@ Partial Class frmAddUser
         Me.ClientSize = New System.Drawing.Size(848, 450)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.dgvUser)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmAddUser"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Users"
         CType(Me.dgvUser, System.ComponentModel.ISupportInitialize).EndInit()

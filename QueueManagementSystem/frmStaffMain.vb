@@ -190,29 +190,8 @@ Public Class frmStaffMain
             Dim ticket = row("queue_number").ToString()
             Dim service = row("service").ToString()
 
-            ' ────────────────────────────────────────────────
-            '           PLAY RING SOUND (use ring.wav)
-            ' ────────────────────────────────────────────────
-            Try
-                ' Use .wav file – My.Computer.Audio.Play does NOT support mp3 reliably
-                Dim soundPath As String = IO.Path.Combine(Application.StartupPath, "ring.wav")
 
-                Debug.WriteLine("Sound path: " & soundPath)
-                Debug.WriteLine("File exists? " & IO.File.Exists(soundPath).ToString)
 
-                If IO.File.Exists(soundPath) Then
-                    My.Computer.Audio.Play(soundPath, AudioPlayMode.Background)
-                    Debug.WriteLine("Sound playback started")
-                Else
-                    Debug.WriteLine("Sound file NOT found: " & soundPath)
-                    ' Optional: uncomment during testing
-                    ' ModuleDatabase.AlertMessage("Ring sound file not found!")
-                End If
-            Catch ex As Exception
-                Debug.WriteLine("Sound playback error: " & ex.Message)
-                ' Optional: uncomment to see error during testing
-                ' MessageBox.Show("Cannot play ring sound: " & ex.Message)
-            End Try
             ' ────────────────────────────────────────────────
 
             ' Update queue status to called

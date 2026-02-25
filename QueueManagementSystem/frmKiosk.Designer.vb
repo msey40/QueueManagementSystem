@@ -41,7 +41,7 @@ Partial Class frmKiosk
         Me.lblWelcome.AutoSize = True
         Me.lblWelcome.Font = New System.Drawing.Font("Segoe UI", 36.0!, System.Drawing.FontStyle.Bold)
         Me.lblWelcome.ForeColor = System.Drawing.Color.White
-        Me.lblWelcome.Location = New System.Drawing.Point(98, 49)
+        Me.lblWelcome.Location = New System.Drawing.Point(160, 49)
         Me.lblWelcome.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblWelcome.Name = "lblWelcome"
         Me.lblWelcome.Size = New System.Drawing.Size(733, 65)
@@ -56,7 +56,7 @@ Partial Class frmKiosk
         Me.lblInstruction.AutoSize = True
         Me.lblInstruction.Font = New System.Drawing.Font("Segoe UI", 18.0!)
         Me.lblInstruction.ForeColor = System.Drawing.Color.LightGray
-        Me.lblInstruction.Location = New System.Drawing.Point(98, 146)
+        Me.lblInstruction.Location = New System.Drawing.Point(160, 146)
         Me.lblInstruction.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblInstruction.Name = "lblInstruction"
         Me.lblInstruction.Size = New System.Drawing.Size(519, 32)
@@ -154,12 +154,12 @@ Partial Class frmKiosk
         'btnKioskSettings
         '
         Me.btnKioskSettings.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnKioskSettings.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.btnKioskSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnKioskSettings.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnKioskSettings.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.btnKioskSettings.FlatAppearance.BorderSize = 0
+        Me.btnKioskSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnKioskSettings.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnKioskSettings.Image = CType(resources.GetObject("btnKioskSettings.Image"), System.Drawing.Image)
-        Me.btnKioskSettings.Location = New System.Drawing.Point(995, 24)
+        Me.btnKioskSettings.Location = New System.Drawing.Point(995, 31)
         Me.btnKioskSettings.Name = "btnKioskSettings"
         Me.btnKioskSettings.Size = New System.Drawing.Size(47, 42)
         Me.btnKioskSettings.TabIndex = 5
@@ -178,6 +178,7 @@ Partial Class frmKiosk
         Me.Controls.Add(Me.lblInstruction)
         Me.Controls.Add(Me.lblWelcome)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmKiosk"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

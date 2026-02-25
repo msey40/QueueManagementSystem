@@ -17,6 +17,7 @@ Partial Class frmMonitor
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMonitor))
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblDisplay = New System.Windows.Forms.Label()
         Me.lblWaiting = New System.Windows.Forms.Label()
@@ -81,10 +82,12 @@ Partial Class frmMonitor
         Me.Controls.Add(Me.lblDisplay)
         Me.Controls.Add(Me.lblTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmMonitor"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Queue Monitor Display"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -94,5 +97,4 @@ Partial Class frmMonitor
     Friend WithEvents lblDisplay As Label
     Friend WithEvents lblWaiting As Label
     Friend WithEvents TimerRefresh As Timer
-
 End Class

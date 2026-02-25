@@ -224,17 +224,20 @@ Partial Class frmService
         '
         'cmsService
         '
+        Me.cmsService.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.cmsService.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuDelete})
         Me.cmsService.Name = "ContextMenuStrip1"
-        Me.cmsService.Size = New System.Drawing.Size(117, 26)
+        Me.cmsService.Size = New System.Drawing.Size(111, 24)
         '
         'mnuDelete
         '
         Me.mnuDelete.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.mnuDelete.Image = CType(resources.GetObject("mnuDelete.Image"), System.Drawing.Image)
         Me.mnuDelete.ImageTransparentColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.mnuDelete.Name = "mnuDelete"
-        Me.mnuDelete.Size = New System.Drawing.Size(116, 22)
-        Me.mnuDelete.Text = "Delete"
+        Me.mnuDelete.Padding = New System.Windows.Forms.Padding(0)
+        Me.mnuDelete.Size = New System.Drawing.Size(110, 20)
+        Me.mnuDelete.Text = "Trash"
         '
         'frmService
         '
@@ -244,6 +247,7 @@ Partial Class frmService
         Me.Controls.Add(Me.dgvServ)
         Me.Controls.Add(Me.Panel1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MinimumSize = New System.Drawing.Size(775, 560)
         Me.Name = "frmService"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Service Setup"
