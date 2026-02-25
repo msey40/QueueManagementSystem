@@ -132,7 +132,4 @@ Public Class frmAdmin
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         cmsSettings.Show(Cursor.Position)
     End Sub
-    Private Sub mnuDevice_Click(sender As Object, e As EventArgs) Handles mnuDevice.Click
-        frmDevices.ShowDialog()
-    End Sub
 End Class
